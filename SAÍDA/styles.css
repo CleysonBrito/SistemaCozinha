@@ -1,0 +1,110 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0; /* Remove o espaço padrão ao redor do body */
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #00009C;
+    margin: 0; /* Remove o espaço ao redor do header */
+}
+
+#logo {
+    height: 50px;
+}
+
+#homeButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+#homeIcon {
+    height: 50px;
+    width: auto;
+}
+
+#titulo {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    color: #f4f4f4;
+    flex-grow: 1;
+}
+
+main {
+    padding: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+form label {
+    margin-top: 10px;
+}
+
+form input {
+    padding: 5px;
+    margin-top: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+.buttons button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    background-color: #F20DE7;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #00FF62;
+}
+
+form button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #F20DE7; /* Cor do botão Adicionar */
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+
+/* Adicione este CSS para estilizar os botões de ação */
+.acaoButton {
+    padding: 5px 10px;
+    margin-right: 5px;
+    background-color: #F20DE7;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.acaoButton:hover {
+    background-color: #00FF62;
+}

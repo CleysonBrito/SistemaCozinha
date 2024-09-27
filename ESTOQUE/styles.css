@@ -1,0 +1,90 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0; /* Remove as margens padrão do body */
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #00009C;
+    margin: 0; /* Remove as margens da header */
+}
+
+.logo {
+    height: 50px;
+}
+
+.home-button img {
+    height: 50px;
+}
+
+.search-container {
+    margin: 20px;
+}
+
+#searchInput {
+    padding: 5px;
+    width: 200px;
+}
+
+#searchOptions {
+    padding: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #00009C;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #00009C;
+}
+
+
+h2 {
+    align-items: center;
+    font-family: verdana, bold;
+    color: aliceblue;
+}
+/* Media Queries para telas menores */
+@media (max-width: 768px) {
+    .item-entry {
+        flex-direction: column;
+    }
+
+    .item-entry label, .item-entry input {
+        flex: 1 1 auto;
+        width: 100%;
+    }
+
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .buttons button {
+        margin-bottom: 10px;
+        width: 100%;
+    }
+}

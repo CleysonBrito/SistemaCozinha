@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>CADASTRO_DE_PRODUTOS</title>
+    <link rel="shortcut icon" href="/IMAGENS/Logo Icone.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/CADASTRO_DE_PRODUTOS/styles.css">
+    <script src="/CADASTRO_DE_PRODUTOS/app.js" defer></script>
+</head>
+<body>
+    <div class="header">
+        <img src="/IMAGENS/Reciclar_Logo_Principal_Vertical_Negativo.png" alt="Logo Esquerdo" class="logo">
+        <h1>CADASTRO DE PRODUTOS</h1>
+        <img src="/IMAGENS/Layout.png" alt="Home" class="home-icon" onclick="irParaHome()">
+    </div>
+    <div class="container">
+        <form id="dataForm">
+            <label for="sku">SKU:</label>
+            <input type="text" id="sku" required>
+            <label for="descricao">Descrição:</label>
+            <input type="text" id="descricao" required>
+            <label for="tipo">Tipo:</label>
+            <select id="tipo" required>
+                <option value="FRUTA">FRUTA</option>
+                <option value="VERDURA">VERDURA</option>
+                <option value="LEGUMES">LEGUMES</option>
+                <option value="BOVINA">BOVINA</option>
+                <option value="AVE">AVE</option>
+                <option value="SUÍNA">SUÍNA</option>
+                <option value="PESCADO">PESCADO</option>
+                <option value="OVOS">OVOS</option>
+            </select>
+            <label for="unidade">Unidade:</label>
+            <input type="text" id="unidade" required>
+            <label for="grupo">Grupo:</label>
+            <select id="grupo" required>
+                <option value="MANTIMENTOS">MANTIMENTOS</option>
+                <option value="HORTALIÇAS">HORTALIÇAS</option>
+                <option value="PROTEINAS">PROTEINAS</option>
+                <option value="DOAÇÕES">DOAÇÕES</option>
+            </select>
+            <label for="quantidade">Quantidade:</label>
+            <input type="number" id="quantidade" required oninput="calcularValorTotal()">
+            <label for="fornecedor">Fornecedor:</label>
+            <input type="text" id="fornecedor" required>
+            <label for="data_cadastro">Data Cadastro:</label>
+            <input type="date" id="data_cadastro" required>
+            <label for="data_vencimento">Data Vencimento:</label>
+            <input type="date" id="data_vencimento" required>
+            <button type="submit">Salvar</button>
+            <button type="button" onclick="limparFormulario()">Limpar</button>
+            <button type="button" onclick="irParaHome()">Voltar para Home</button>
+        </form>
+        <div id="output"></div>
+    </div>
+</body>
+</html>
