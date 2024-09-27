@@ -9,7 +9,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
          {
         alert('Login bem-sucedido!');
         errorMessage.textContent = '';
-        window.location.href = 'HOME/home.html'; // Redireciona para home.html
+        window.location.href = './HOME/home.html'; // Redireciona para home.html
     } else {
         errorMessage.textContent = 'E-mail ou senha incorretos.';
     }
