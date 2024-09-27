@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estoque</title>
+    <link rel="shortcut icon" href="/IMAGENS/Logo Icone.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/ESTOQUE/styles.css">
+</head>
+<body>
+    <header>
+               <img src="/IMAGENS/Reciclar_Logo_Principal_Vertical_Negativo.png" alt="Logo Esquerdo" class="logo">
+               <h2>ESTOQUE/CONSULTA</h2>
+        <button class="home-button" onclick="goHome()">
+            <img src="/IMAGENS/Layout.png" alt="Home">
+        </button>
+    </header>
+    <main>
+        <div class="search-container">
+            
+            <select id="searchOptions">
+                <option value="SKU">SKU</option>
+                <option value="Descricao">Descrição</option>
+                <option value="Tipo">Tipo</option>
+                <option value="DataCadastro">Data de Cadastro</option>
+                <option value="DataVencimento">Data de Vencimento</option>
+                </select>
+            <input type="text" id="searchInput" placeholder="Pesquisar...">
+            <button onclick="searchItems()">Pesquisar</button>
+        </div>
+        <table id="itemsTable">
+            <thead>
+                <tr>
+                    <th>SKU</th>
+                    <th>Descrição</th>
+                    <th>Tipo</th>
+                    <th>Unidade</th>
+                    <th>Grupo</th>
+                    <th>Quantidade</th>
+                    <th>Fornecedor</th>
+                    <th>Data Cadastro</th>
+                    <th>Data Vencimento</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Os itens cadastrados aparecerão aqui -->
+            </tbody>
+        </table>
+        <button onclick="exportToExcel()">Exportar</button>
+    </main>
+    <script src="/ESTOQUE/script.js"></script>
+</body>
+</html>
