@@ -1,5 +1,5 @@
 document.getElementById('homeButton').addEventListener('click', function() {
-    window.location.href = '/HOME/home.html';
+    window.location.href = './home.html';
 });
 
 function adicionarItem() {
