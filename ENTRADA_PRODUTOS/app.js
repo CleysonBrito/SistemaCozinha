@@ -34,5 +34,5 @@ function limparFormulario() {
 
 // Função para ir para a home
 function irParaHome() {
-    window.location.href = "home.html"; // Substitua pelo caminho correto para a página inicial
+    window.location.href = "./home.html"; // Substitua pelo caminho correto para a página inicial
 }
