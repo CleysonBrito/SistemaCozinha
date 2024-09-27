@@ -1,5 +1,5 @@
 function goHome() {
-    window.location.href = '/HOME/home.html';
+    window.location.href = './home.html';
 }
 
 function navigateTo(page) {
