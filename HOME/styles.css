@@ -90,7 +90,7 @@ body {
 }
 
 .main-content img {
-    width: 400px; /* Ajuste o tamanho conforme necessário */
+    width: 200px; /* Ajuste o tamanho conforme necessário */
     height: auto;
     cursor: pointer;
     margin: 10px; /* Espaçamento entre os botões */
