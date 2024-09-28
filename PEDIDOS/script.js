@@ -1,5 +1,5 @@
 function goHome() {
-    window.location.href = '/HTML JAVA E CSS/HOME_2/HTML/index.html'; // Altere para a URL da sua página inicial
+    window.location.href = './home.html'; // Altere para a URL da sua página inicial
 }
 
 function searchItems() {
