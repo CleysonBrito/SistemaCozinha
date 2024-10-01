@@ -1,40 +1,57 @@
-// Função para lidar com GET
-function doGet(e) {
-    return ContentService.createTextOutput(JSON.stringify({ message: 'Método GET não suportado' }))
-                   .setMimeType(ContentService.MimeType.JSON)
-                   .setHeader('Access-Control-Allow-Origin', '*')
-                   .setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
-                   .setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  }
-  
-  // Função para lidar com POST
-  function doPost(e) {
-    try {
-      var data = JSON.parse(e.postData.contents);
-  
-      // Processar os dados aqui, por exemplo, salvar no Google Sheets
-  
-      return ContentService.createTextOutput(JSON.stringify({status: 'success', data: data}))
-                           .setMimeType(ContentService.MimeType.JSON)
-                           .setHeader('Access-Control-Allow-Origin', '*')
-                           .setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
-                           .setHeader('Access-Control-Allow-Headers', 'Content-Type');
-      
-    } catch (error) {
-      return ContentService.createTextOutput(JSON.stringify({status: 'error', message: error.message}))
-                           .setMimeType(ContentService.MimeType.JSON)
-                           .setHeader('Access-Control-Allow-Origin', '*')
-                           .setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
-                           .setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    }
-  }
-  
-  // Função para lidar com requisições OPTIONS (preflight)
-  function doOptions(e) {
-    return ContentService.createTextOutput('')
-           .setMimeType(ContentService.MimeType.JSON)
-           .setHeader('Access-Control-Allow-Origin', '*')
-           .setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
-           .setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  }
-  
+// Função para enviar dados
+document.getElementById('dataForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    // Extrair valores do formulário
+    const sku = document.getElementById('sku').value;
+    const descricao = document.getElementById('descricao').value;
+    const tipo = document.getElementById('tipo').value;
+    const unidade = document.getElementById('unidade').value;
+    const grupo = document.getElementById('grupo').value;
+    const quantidade = parseFloat(document.getElementById('quantidade').value) || 0;
+    const valor_unitario = parseFloat(document.getElementById('valor_unitario').value) || 0;
+    const valor_total = parseFloat(document.getElementById('valor_total').value) || 0;
+    const fornecedor = document.getElementById('fornecedor').value;
+    const data_cadastro = document.getElementById('data_cadastro').value;
+    const data_vencimento = document.getElementById('data_vencimento').value;
+
+    // Dados a serem enviados
+    const data = {
+        sku,
+        descricao,
+        tipo,
+        unidade,
+        grupo,
+        quantidade,
+        valor_unitario,
+        valor_total,
+        fornecedor,
+        data_cadastro,
+        data_vencimento
+    };
+
+    // Enviar dados para o Google Apps Script
+    fetch('https://script.google.com/macros/s/AKfycbyyxWECBn0dOYrRKk2mx0MQdysL9RHc1qWskCHnibpFjwd9lJ7GTVNL57lvU1M7OjXO/exec', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Erro na resposta do servidor');
+        return response.json();
+    })
+    .then(result => {
+        if (result.status === 'success') {
+            alert('Produto salvo com sucesso!');
+            document.getElementById('dataForm').reset();
+        } else {
+            throw new Error(result.message || 'Erro ao salvar o produto.');
+        }
+    })
+    .catch(error => {
+        console.error('Erro ao salvar o produto:', error);
+        alert('Erro ao salvar o produto. Tente novamente.');
+    });
+});
