@@ -29,7 +29,7 @@ document.getElementById('dataForm').addEventListener('submit', (e) => {
     };
 
     // Enviar dados para o Google Sheets
-    google.script.host.fetch('https://script.google.com/macros/s/AKfycbyyxWECBn0dOYrRKk2mx0MQdysL9RHc1qWskCHnibpFjwd9lJ7GTVNL57lvU1M7OjXO/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbyyxWECBn0dOYrRKk2mx0MQdysL9RHc1qWskCHnibpFjwd9lJ7GTVNL57lvU1M7OjXO/exec', {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {
