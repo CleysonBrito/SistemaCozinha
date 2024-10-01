@@ -1,5 +1,5 @@
 // Função para enviar dados
-document.getElementById('dataForm').addEventListener('submit', async (e) => {
+document.getElementById('dataForm').addEventListener('submit', (e) => {
     e.preventDefault();
     
     // Extrair valores do formulário
@@ -30,28 +30,8 @@ document.getElementById('dataForm').addEventListener('submit', async (e) => {
         data_vencimento
     };
 
-    // Enviar dados para o back-end (insira o seu endpoint)
-    try {
-        const response = await fetch('https://<seu-endpoint>', { // Insira o seu endpoint aqui
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                // 'api-key': '<sua-chave-de-api>' // Descomente e insira sua chave de API, se necessário
-            },
-            body: JSON.stringify(data)
-        });
-
-        const result = await response.json();
-        if (response.ok) {
-            alert('Produto salvo com sucesso! ID: ' + result.id);
-            document.getElementById('dataForm').reset();
-        } else {
-            throw new Error(result.message || 'Erro ao salvar o produto.');
-        }
-    } catch (error) {
-        console.error('Erro ao salvar o produto:', error);
-        alert('Erro ao salvar o produto. Tente novamente.');
-    }
+    // Aqui você pode adicionar a lógica para enviar os dados para o seu back-end
+    console.log('Dados a serem enviados:', data);
 });
 
 // Função para calcular o valor total
