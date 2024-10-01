@@ -13,10 +13,38 @@ document.getElementById('dataForm').addEventListener('submit', (e) => {
     const data_cadastro = document.getElementById('data_cadastro').value;
     const data_vencimento = document.getElementById('data_vencimento').value;
 
-    // Aqui você pode adicionar a lógica para enviar os dados para o seu banco de dados
+    // Dados a serem enviados
+    const data = {
+        sku,
+        descricao,
+        tipo,
+        unidade,
+        grupo,
+        quantidade,
+        valor_unitario,
+        valor_total,
+        fornecedor,
+        data_cadastro,
+        data_vencimento
+    };
 
-    alert('Produto salvo com sucesso!');
-    document.getElementById('dataForm').reset();
+    // Enviar dados para o Google Sheets
+    fetch('https://script.google.com/macros/s/AKfycbyyxWECBn0dOYrRKk2mx0MQdysL9RHc1qWskCHnibpFjwd9lJ7GTVNL57lvU1M7OjXO/exec', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(result => {
+        alert('Produto salvo com sucesso!');
+        document.getElementById('dataForm').reset();
+    })
+    .catch(error => {
+        console.error('Erro ao salvar o produto:', error);
+        alert('Erro ao salvar o produto. Tente novamente.');
+    });
 });
 
 // Função para calcular o valor total
@@ -36,3 +64,4 @@ function limparFormulario() {
 function irParaHome() {
     window.location.href = "./home.html"; // Substitua pelo caminho correto para a página inicial
 }
+
