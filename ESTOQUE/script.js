@@ -19,7 +19,7 @@ function exportToExcel() {
 
 // Função para ler dados do Firebase e exibir na tabela
 function loadItems() {
-    const db = firebase.database().ref('produtos');
+    const db = firebase.database().ref('entradaprodutos');
     db.on('value', (snapshot) => {
         const data = snapshot.val();
         console.log('Dados recebidos do Firebase:', data); // Adicione este log para verificar os dados recebidos
@@ -40,6 +40,8 @@ function loadItems() {
                 row.insertCell(6).innerText = produto.fornecedor;
                 row.insertCell(7).innerText = produto.data_cadastro;
                 row.insertCell(8).innerText = produto.data_vencimento;
+                row.insertCell(9).innerText = produto.valor_unitario;
+                row.insertCell(10).innerText = produto.valor_total;
             }
         }
     });
