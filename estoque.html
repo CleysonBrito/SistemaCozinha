@@ -6,25 +6,44 @@
     <title>Estoque</title>
     <link rel="shortcut icon" href="./IMAGENS/Logo Icone.ico" type="image/x-icon">
     <link rel="stylesheet" href="./ESTOQUE/styles.css">
+    
+    <!-- Adicione o SDK do Firebase compatível com navegador -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+    <script>
+        // Configuração do Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyDjuoTIoL4CX8KSkWXos1JEYQ9u0KhySmk",
+            authDomain: "bancocozinha.firebaseapp.com",
+            databaseURL: "https://bancocozinha-default-rtdb.firebaseio.com",
+            projectId: "bancocozinha",
+            storageBucket: "bancocozinha.appspot.com",
+            messagingSenderId: "424572545119",
+            appId: "1:424572545119:web:bc20a45001fbac1cbfd3ea",
+            measurementId: "G-5J6XFE0H02"
+        };
+
+        // Inicializar o Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
 </head>
 <body>
     <header>
-               <img src="./IMAGENS/Reciclar_Logo_Principal_Vertical_Negativo.png" alt="Logo Esquerdo" class="logo">
-               <h2>ESTOQUE/CONSULTA</h2>
+        <img src="./IMAGENS/Reciclar_Logo_Principal_Vertical_Negativo.png" alt="Logo Esquerdo" class="logo">
+        <h2>ESTOQUE/CONSULTA</h2>
         <button class="home-button" onclick="goHome()">
             <img src="./IMAGENS/Layout.png" alt="Home">
         </button>
     </header>
     <main>
         <div class="search-container">
-            
             <select id="searchOptions">
                 <option value="SKU">SKU</option>
                 <option value="Descricao">Descrição</option>
                 <option value="Tipo">Tipo</option>
                 <option value="DataCadastro">Data de Cadastro</option>
                 <option value="DataVencimento">Data de Vencimento</option>
-                </select>
+            </select>
             <input type="text" id="searchInput" placeholder="Pesquisar...">
             <button onclick="searchItems()">Pesquisar</button>
         </div>
