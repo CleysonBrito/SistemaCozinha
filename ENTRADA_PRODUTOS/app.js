@@ -61,13 +61,13 @@ function irParaHome() {
 }
 
 // Função para ler dados do Firebase
-function lerDados() {
-    const db = firebase.database().ref('produtos');
-    db.on('value', (snapshot) => {
-        const data = snapshot.val();
-        console.log(data);
+//function lerDados() {
+  //  const db = firebase.database().ref('produtos');
+    //db.on('value', (snapshot) => {
+      //  const data = snapshot.val();
+        //console.log(data);
         // Aqui você pode adicionar lógica para exibir os dados na sua página
-        document.getElementById('output').innerText = JSON.stringify(data, null, 2);
+        //document.getElementById('output').innerText = JSON.stringify(data, null, 2);
     });
 }
 
