@@ -6,8 +6,25 @@
     <link rel="shortcut icon" href="./IMAGENS/Logo Icone.ico" type="image/x-icon">
     <link rel="stylesheet" href="./ENTRADA_PRODUTOS/styles.css">
     
-  
-    <!-- Seu arquivo JavaScript -->
+    <!-- Adicione o SDK do Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+    <script>
+        // Configuração do Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyDjuoTIoL4CX8KSkWXos1JEYQ9u0KhySmk",
+            authDomain: "bancocozinha.firebaseapp.com",
+            databaseURL: "https://bancocozinha-default-rtdb.firebaseio.com",
+            projectId: "bancocozinha",
+            storageBucket: "bancocozinha.appspot.com",
+            messagingSenderId: "424572545119",
+            appId: "1:424572545119:web:bc20a45001fbac1cbfd3ea",
+            measurementId: "G-5J6XFE0H02"
+        };
+
+        // Inicializar o Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
     <script src="./ENTRADA_PRODUTOS/app.js" defer></script>
 </head>
 <body>

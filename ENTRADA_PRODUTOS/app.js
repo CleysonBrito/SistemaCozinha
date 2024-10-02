@@ -1,22 +1,23 @@
 // Função para enviar dados
 document.getElementById('dataForm').addEventListener('submit', (e) => {
     e.preventDefault();
-    
-    // Extrair valores do formulário
     const sku = document.getElementById('sku').value;
     const descricao = document.getElementById('descricao').value;
     const tipo = document.getElementById('tipo').value;
     const unidade = document.getElementById('unidade').value;
     const grupo = document.getElementById('grupo').value;
-    const quantidade = parseFloat(document.getElementById('quantidade').value) || 0;
-    const valor_unitario = parseFloat(document.getElementById('valor_unitario').value) || 0;
-    const valor_total = parseFloat(document.getElementById('valor_total').value) || 0;
+    const quantidade = document.getElementById('quantidade').value;
+    const valor_unitario = document.getElementById('valor_unitario').value;
+    const valor_total = document.getElementById('valor_total').value;
     const fornecedor = document.getElementById('fornecedor').value;
     const data_cadastro = document.getElementById('data_cadastro').value;
     const data_vencimento = document.getElementById('data_vencimento').value;
 
+    // Referência ao banco de dados
+    const db = firebase.database().ref('produtos');
+
     // Dados a serem enviados
-    const data = {
+    const produto = {
         sku,
         descricao,
         tipo,
@@ -30,14 +31,21 @@ document.getElementById('dataForm').addEventListener('submit', (e) => {
         data_vencimento
     };
 
-    // Aqui você pode adicionar a lógica para enviar os dados para o seu back-end
-    console.log('Dados a serem enviados:', data);
+    // Enviar dados para o Firebase
+    db.push(produto)
+        .then(() => {
+            alert('Produto salvo com sucesso!');
+            document.getElementById('dataForm').reset();
+        })
+        .catch((error) => {
+            console.error('Erro ao salvar produto: ', error);
+        });
 });
 
 // Função para calcular o valor total
 function calcularValorTotal() {
-    const quantidade = parseFloat(document.getElementById('quantidade').value) || 0;
-    const valor_unitario = parseFloat(document.getElementById('valor_unitario').value) || 0;
+    const quantidade = document.getElementById('quantidade').value;
+    const valor_unitario = document.getElementById('valor_unitario').value;
     const valor_total = quantidade * valor_unitario;
     document.getElementById('valor_total').value = valor_total.toFixed(2);
 }
