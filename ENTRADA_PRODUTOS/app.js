@@ -17,7 +17,7 @@ document.getElementById('dataForm').addEventListener('submit', (e) => {
     const db = firebase.database().ref('entradaprodutos');
 
     // Dados a serem enviados
-    const Entradaprodutos = {
+    const entradaprodutos = {
         sku,
         descricao,
         tipo,
@@ -32,7 +32,7 @@ document.getElementById('dataForm').addEventListener('submit', (e) => {
     };
 
     // Enviar dados para o Firebase
-    db.push(produto)
+    db.push(entradaprodutos)
         .then(() => {
             alert('Produto salvo com sucesso!');
             document.getElementById('dataForm').reset();
@@ -59,3 +59,17 @@ function limparFormulario() {
 function irParaHome() {
     window.location.href = "./home.html"; // Substitua pelo caminho correto para a página inicial
 }
+
+// Função para ler dados do Firebase
+function lerDados() {
+    const db = firebase.database().ref('entradaprodutos');
+    db.on('value', (snapshot) => {
+        const data = snapshot.val();
+        console.log(data);
+        // Aqui você pode adicionar lógica para exibir os dados na sua página
+        document.getElementById('output').innerText = JSON.stringify(data, null, 2);
+    });
+}
+
+// Chame a função para ler os dados quando a página carregar
+window.onload = lerDados;
