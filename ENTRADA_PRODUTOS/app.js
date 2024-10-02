@@ -72,4 +72,4 @@ function lerDados() {
 }
 
 // Chame a função para ler os dados quando a página carregar
-window.onload = lerDados;
+//window.onload = lerDados;
