@@ -22,6 +22,7 @@ function loadItems() {
     const db = firebase.database().ref('produtos');
     db.on('value', (snapshot) => {
         const data = snapshot.val();
+        console.log('Dados recebidos do Firebase:', data); // Adicione este log para verificar os dados recebidos
         const tbody = document.getElementById('itemsTable').getElementsByTagName('tbody');
         tbody.innerHTML = ''; // Limpa o conteúdo anterior
 
