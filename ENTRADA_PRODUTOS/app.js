@@ -17,7 +17,7 @@ document.getElementById('dataForm').addEventListener('submit', (e) => {
     const db = firebase.database().ref('entradaprodutos');
 
     // Dados a serem enviados
-    const produto = {
+    const Eentradaprodutos = {
         sku,
         descricao,
         tipo,
