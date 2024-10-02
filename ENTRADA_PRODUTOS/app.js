@@ -14,7 +14,7 @@ document.getElementById('dataForm').addEventListener('submit', (e) => {
     const data_vencimento = document.getElementById('data_vencimento').value;
 
     // Referência ao banco de dados
-    const db = firebase.database().ref('produtos');
+    const db = firebase.database().ref('entradaprodutos');
 
     // Dados a serem enviados
     const produto = {
