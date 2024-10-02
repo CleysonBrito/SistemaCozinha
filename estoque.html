@@ -37,15 +37,11 @@
     </header>
     <main>
         <div class="search-container">
-            <select id="searchOptions">
-                <option value="SKU">SKU</option>
-                <option value="Descricao">Descrição</option>
-                <option value="Tipo">Tipo</option>
-                <option value="DataCadastro">Data de Cadastro</option>
-                <option value="DataVencimento">Data de Vencimento</option>
-            </select>
-            <input type="text" id="searchInput" placeholder="Pesquisar...">
-            <button onclick="searchItems()">Pesquisar</button>
+            <label for="startDate">Data Inicial:</label>
+            <input type="date" id="startDate">
+            <label for="endDate">Data Final:</label>
+            <input type="date" id="endDate">
+            <button onclick="searchItemsByDate()">Pesquisar</button>
         </div>
         <table id="itemsTable">
             <thead>
