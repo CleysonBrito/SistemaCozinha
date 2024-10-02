@@ -1,17 +1,3 @@
-// Inicializar o Firebase
-const firebaseConfig = {
-    apiKey: "AIzaSyDjuoTIoL4CX8KSkWXos1JEYQ9u0KhySmk",
-    authDomain: "bancocozinha.firebaseapp.com",
-    databaseURL: "https://bancocozinha-default-rtdb.firebaseio.com",
-    projectId: "bancocozinha",
-    storageBucket: "bancocozinha.appspot.com",
-    messagingSenderId: "424572545119",
-    appId: "1:424572545119:web:bc20a45001fbac1cbfd3ea",
-    measurementId: "G-5J6XFE0H02"
-};
-
-firebase.initializeApp(firebaseConfig);
-
 // Função para ir para a home
 function goHome() {
     window.location.href = './home.html';
