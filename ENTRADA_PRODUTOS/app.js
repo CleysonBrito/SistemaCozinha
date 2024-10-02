@@ -14,7 +14,7 @@ document.getElementById('dataForm').addEventListener('submit', (e) => {
     const data_vencimento = document.getElementById('data_vencimento').value;
 
     // Referência ao banco de dados
-    const db = firebase.database().ref('entradaprodutos');
+    const db = firebase.database().ref('produtos');
 
     // Dados a serem enviados
     const entradaprodutos = {
@@ -62,7 +62,7 @@ function irParaHome() {
 
 // Função para ler dados do Firebase
 function lerDados() {
-    const db = firebase.database().ref('entradaprodutos');
+    const db = firebase.database().ref('produtos');
     db.on('value', (snapshot) => {
         const data = snapshot.val();
         console.log(data);
