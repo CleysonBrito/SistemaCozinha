@@ -14,12 +14,16 @@ function searchItemsByDate() {
     }
 
     const db = firebase.firestore();
+    // Converter as strings de data para objetos Date
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    
     db.collection('entradaprodutos')
-        .where('data_cadastro', '>=', startDate)
-        .where('data_cadastro', '<=', endDate)
+        .where('data_cadastro', '>=', start)
+        .where('data_cadastro', '<=', end)
         .get()
         .then((querySnapshot) => {
-            const tbody = document.getElementById('itemsTable').getElementsByTagName('tbody');
+            const tbody = document.getElementById('itemsTable').getElementsByTagName('tbody')[0];
             tbody.innerHTML = ''; // Limpa o conteúdo anterior
 
             querySnapshot.forEach((doc) => {
@@ -33,8 +37,8 @@ function searchItemsByDate() {
                 row.insertCell(4).innerText = produto.grupo;
                 row.insertCell(5).innerText = produto.quantidade;
                 row.insertCell(6).innerText = produto.fornecedor;
-                row.insertCell(7).innerText = produto.data_cadastro;
-                row.insertCell(8).innerText = produto.data_vencimento;
+                row.insertCell(7).innerText = produto.data_cadastro.toDate().toLocaleDateString(); // Formata a data
+                row.insertCell(8).innerText = produto.data_vencimento.toDate().toLocaleDateString(); // Formata a data
                 row.insertCell(9).innerText = produto.valor_unitario;
                 row.insertCell(10).innerText = produto.valor_total;
             });
@@ -56,7 +60,7 @@ function loadItems() {
     db.collection('entradaprodutos')
         .get()
         .then((querySnapshot) => {
-            const tbody = document.getElementById('itemsTable').getElementsByTagName('tbody');
+            const tbody = document.getElementById('itemsTable').getElementsByTagName('tbody')[0];
             tbody.innerHTML = ''; // Limpa o conteúdo anterior
 
             querySnapshot.forEach((doc) => {
@@ -70,8 +74,8 @@ function loadItems() {
                 row.insertCell(4).innerText = produto.grupo;
                 row.insertCell(5).innerText = produto.quantidade;
                 row.insertCell(6).innerText = produto.fornecedor;
-                row.insertCell(7).innerText = produto.data_cadastro;
-                row.insertCell(8).innerText = produto.data_vencimento;
+                row.insertCell(7).innerText = produto.data_cadastro.toDate().toLocaleDateString(); // Formata a data
+                row.insertCell(8).innerText = produto.data_vencimento.toDate().toLocaleDateString(); // Formata a data
                 row.insertCell(9).innerText = produto.valor_unitario;
                 row.insertCell(10).innerText = produto.valor_total;
             });
