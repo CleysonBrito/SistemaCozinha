@@ -21,8 +21,8 @@
       <label for="sku">SKU:</label>
       <input type="text" id="sku" name="sku" required>
       
-      <label for="descrição">DESCRIÇÃO:</label>
-      <input type="text" id="descrição" name="descrição" required>
+      <label for="descricao">DESCRIÇÃO:</label>
+      <input type="text" id="descricao" name="descricao" required>
       
       <label for="tipo">Tipo:</label>
       <select id="tipo" name="tipo" required> 
@@ -35,19 +35,18 @@
           <option value="PESCADO">PESCADO</option>
           <option value="OVOS">OVOS</option>
           <option value="MERCADO">MERCADO</option>
-
-
+      </select>
   
       <label for="unidade">UNIDADE:</label>
       <input type="text" id="unidade" name="unidade">
       
       <label for="grupo">GRUPO:</label>
-                <select id="grupo" name="grupo" required> 
-                <option value="MANTIMENTOS">MANTIMENTOS</option>
-                <option value="HORTALIÇAS">HORTALIÇAS</option>
-                <option value="PROTEINAS">PROTEINAS</option>
-                <option value="DOAÇÕES">DOAÇÕES</option>
-
+      <select id="grupo" name="grupo" required> 
+          <option value="MANTIMENTOS">MANTIMENTOS</option>
+          <option value="HORTALIÇAS">HORTALIÇAS</option>
+          <option value="PROTEINAS">PROTEINAS</option>
+          <option value="DOAÇÕES">DOAÇÕES</option>
+      </select>
       
       <label for="quantidade">QUANTIDADE:</label>
       <input type="text" id="quantidade" name="quantidade">
@@ -61,10 +60,6 @@
       <label for="data_vencimento">DATA VENCIMENTO:</label>
       <input type="text" id="data_vencimento" name="data_vencimento">
 
-        <!-- Outras opções aqui -->
-      </select>
-      
-       
       <div class="buttons">
         <button type="submit">Salvar</button>
         <button type="reset">Limpar</button>
