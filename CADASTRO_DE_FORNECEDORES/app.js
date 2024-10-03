@@ -3,7 +3,8 @@ document.getElementById('supplier-form').addEventListener('submit', function(e) 
 
     var formData = new FormData(this);  // Coleta os dados do formulário
 
-    fetch('https://script.google.com/macros/s/AKfycbyrEw6-lfUjaw15in6Zp8F8QaiZ6Mvpv9GHVJMZmkvQRyDYFD61BtZxRF1hgSVDxmQBIA/exec', {
+    // Substitua o URL pelo seu link do Google Apps Script
+    fetch('https://script.google.com/macros/s/AKfycbzKX-uqS-ZZKcteIRU6vyrCk8Jlo2iYNdOKXLjmzYcCA7wZgbPabDvPlVFFVmjGdcpq/exec', {
         method: 'POST',
         body: formData
     })
