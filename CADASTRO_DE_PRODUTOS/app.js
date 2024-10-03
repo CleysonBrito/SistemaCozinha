@@ -2,7 +2,7 @@ document.getElementById('dataForm').addEventListener('submit', (e) => {
     e.preventDefault();  // Previne o envio padrão do formulário
 
     // Cria o objeto FormData para coletar os dados do formulário
-    var formData = new FormData(document.getElementById('dataForm')); // Certifique-se de que 'formData' esteja definida aqui
+    var formData = new FormData(document.getElementById('dataForm'));
 
     // Envia os dados para o Google Apps Script
     fetch('https://script.google.com/macros/s/AKfycbzKX-uqS-ZZKcteIRU6vyrCk8Jlo2iYNdOKXLjmzYcCA7wZgbPabDvPlVFFVmjGdcpq/exec', {
