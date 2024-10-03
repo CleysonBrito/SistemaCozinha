@@ -1,10 +1,9 @@
-document.getElementById('dataForm').addEventListener('submit', (e) => {
-    e.preventDefault();  // Previne o envio padrão do formulário
+document.getElementById('supplier-form').addEventListener('submit', function(e) {
+    e.preventDefault();  // Evita o envio padrão do formulário
 
-    // Cria o objeto FormData para coletar os dados do formulário
-    var formData = new FormData(document.getElementById('dataForm'));
+    var formData = new FormData(this);  // Coleta os dados do formulário
 
-    // Envia os dados para o Google Apps Script
+    // Substitua o URL pelo seu link do Google Apps Script
     fetch('https://script.google.com/macros/s/AKfycbzKX-uqS-ZZKcteIRU6vyrCk8Jlo2iYNdOKXLjmzYcCA7wZgbPabDvPlVFFVmjGdcpq/exec', {
         method: 'POST',
         body: formData
@@ -12,8 +11,8 @@ document.getElementById('dataForm').addEventListener('submit', (e) => {
     .then(response => response.json())  // Transforma a resposta em JSON
     .then(data => {
         if (data.result === 'success') {
-            alert('Produto salvo com sucesso!');
-            document.getElementById('dataForm').reset();  // Limpa o formulário
+            alert('Dados enviados com sucesso!');
+            document.getElementById('supplier-form').reset();  // Limpa o formulário
         } else {
             alert('Erro ao enviar os dados: ' + data.error);
         }
@@ -23,3 +22,7 @@ document.getElementById('dataForm').addEventListener('submit', (e) => {
         alert('Ocorreu um erro ao enviar os dados. Por favor, tente novamente.');
     });
 });
+
+function goBack() {
+    window.history.back();  // Retorna para a página anterior
+}
