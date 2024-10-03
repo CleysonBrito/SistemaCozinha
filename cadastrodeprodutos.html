@@ -16,11 +16,11 @@
     <div class="container">
         <form id="dataForm">
             <label for="sku">SKU:</label>
-            <input type="text" id="sku" required>
+            <input type="text" id="sku" name="sku" required> <!-- Adicione o atributo name -->
             <label for="descricao">Descrição:</label>
-            <input type="text" id="descricao" required>
+            <input type="text" id="descricao" name="descricao" required> <!-- Adicione o atributo name -->
             <label for="tipo">Tipo:</label>
-            <select id="tipo" required>
+            <select id="tipo" name="tipo" required> <!-- Adicione o atributo name -->
                 <option value="FRUTA">FRUTA</option>
                 <option value="VERDURA">VERDURA</option>
                 <option value="LEGUMES">LEGUMES</option>
@@ -32,26 +32,27 @@
                 <option value="MERCADO">MERCADO</option>
             </select>
             <label for="unidade">Unidade:</label>
-            <input type="text" id="unidade" required>
+            <input type="text" id="unidade" name="unidade" required> <!-- Adicione o atributo name -->
             <label for="grupo">Grupo:</label>
-            <select id="grupo" required>
+            <select id="grupo" name="grupo" required> <!-- Adicione o atributo name -->
                 <option value="MANTIMENTOS">MANTIMENTOS</option>
                 <option value="HORTALIÇAS">HORTALIÇAS</option>
                 <option value="PROTEINAS">PROTEINAS</option>
                 <option value="DOAÇÕES">DOAÇÕES</option>
             </select>
             <label for="quantidade">Quantidade:</label>
-            <input type="number" id="quantidade" required>
+            <input type="number" id="quantidade" name="quantidade" required> <!-- Adicione o atributo name -->
             <label for="fornecedor">Fornecedor:</label>
-            <input type="text" id="fornecedor" required>
+            <input type="text" id="fornecedor" name="fornecedor" required> <!-- Adicione o atributo name -->
             <label for="data_cadastro">Data Cadastro:</label>
-            <input type="date" id="data_cadastro" required>
+            <input type="date" id="data_cadastro" name="data_cadastro" required> <!-- Adicione o atributo name -->
             <label for="data_vencimento">Data Vencimento:</label>
-            <input type="date" id="data_vencimento" required>
+            <input type="date" id="data_vencimento" name="data_vencimento" required> <!-- Adicione o atributo name -->
             <button type="submit">Salvar</button>
             <button type="button" onclick="limparFormulario()">Limpar</button>
             <button type="button" onclick="irParaHome()">Voltar para Home</button>
         </form>
+        
         <div id="output"></div>
     </div>
 </body>
