@@ -80,6 +80,7 @@ button:hover {
     background-color: #00FF62;
 }
 
+/* Media Queries for Responsiveness */
 @media (max-width: 768px) {
     .container {
         width: 90%;
