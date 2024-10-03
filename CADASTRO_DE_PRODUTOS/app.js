@@ -18,22 +18,16 @@ document.getElementById('dataForm').addEventListener('submit', (e) => {
     // Envia os dados para o Google Apps Script
     fetch('https://script.google.com/macros/s/AKfycbzKX-uqS-ZZKcteIRU6vyrCk8Jlo2iYNdOKXLjmzYcCA7wZgbPabDvPlVFFVmjGdcpq/exec', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'  // Define o tipo de conteúdo como JSON
-        },
-        body: JSON.stringify(data)  // Converte os dados para JSON
+        body: formData,
+        mode: 'no-cors'
     })
-    .then(response => response.json())  // Converte a resposta em JSON
-    .then(data => {
-        if (data.result === 'success') {
-            alert('Produto salvo com sucesso!');
-            document.getElementById('dataForm').reset();  // Limpa o formulário
-        } else {
-            alert('Erro ao enviar os dados: ' + data.error);
-        }
+    .then(() => {
+        alert('Produto salvo com sucesso!');
+        document.getElementById('dataForm').reset();
     })
     .catch(error => {
         console.error('Erro:', error);
         alert('Ocorreu um erro ao enviar os dados. Por favor, tente novamente.');
     });
+    
 });
