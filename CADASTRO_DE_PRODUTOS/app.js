@@ -1,13 +1,26 @@
 document.getElementById('dataForm').addEventListener('submit', (e) => {
     e.preventDefault();
 
-    // Cria o objeto FormData para coletar os dados do formulário
-    var formData = new FormData(document.getElementById('dataForm'));
+    // Cria o objeto com os dados do formulário
+    var data = {
+        sku: document.getElementById('sku').value,
+        descricao: document.getElementById('descricao').value,
+        tipo: document.getElementById('tipo').value,
+        unidade: document.getElementById('unidade').value,
+        grupo: document.getElementById('grupo').value,
+        quantidade: document.getElementById('quantidade').value,
+        fornecedor: document.getElementById('fornecedor').value,
+        data_cadastro: document.getElementById('data_cadastro').value,
+        data_vencimento: document.getElementById('data_vencimento').value
+    };
 
-    // Envia os dados para o Google Apps Script
+    // Envia os dados como JSON para o Google Apps Script
     fetch('https://script.google.com/macros/s/AKfycbzKX-uqS-ZZKcteIRU6vyrCk8Jlo2iYNdOKXLjmzYcCA7wZgbPabDvPlVFFVmjGdcpq/exec', {
         method: 'POST',
-        body: formData
+        headers: {
+            'Content-Type': 'application/json'  // Especifica que os dados estão em formato JSON
+        },
+        body: JSON.stringify(data)  // Envia os dados como um objeto JSON
     })
     .then(response => response.json())  // Converte a resposta para JSON
     .then(data => {
