@@ -1,36 +1,39 @@
 document.getElementById('dataForm').addEventListener('submit', (e) => {
     e.preventDefault();
     
-    // Cria o objeto com os dados
-    const formData = new FormData();
-    formData.append('sku', document.getElementById('sku').value);
-    formData.append('descricao', document.getElementById('descricao').value);
-    formData.append('tipo', document.getElementById('tipo').value);
-    formData.append('unidade', document.getElementById('unidade').value);
-    formData.append('grupo', document.getElementById('grupo').value);
-    formData.append('quantidade', document.getElementById('quantidade').value);
-    formData.append('fornecedor', document.getElementById('fornecedor').value);
-    formData.append('data_cadastro', document.getElementById('data_cadastro').value);
-    formData.append('data_vencimento', document.getElementById('data_vencimento').value);
-    formData.append('aba', 'cadastrodeprodutos'); // Informa a aba de destino
+    // Cria o objeto com os dados do formulário
+    const data = {
+        sku: document.getElementById('sku').value,
+        descricao: document.getElementById('descricao').value,
+        tipo: document.getElementById('tipo').value,
+        unidade: document.getElementById('unidade').value,
+        grupo: document.getElementById('grupo').value,
+        quantidade: document.getElementById('quantidade').value,
+        fornecedor: document.getElementById('fornecedor').value,
+        data_cadastro: document.getElementById('data_cadastro').value,
+        data_vencimento: document.getElementById('data_vencimento').value,
+        aba: 'cadastrodeprodutos' // Especifica a aba correta
+    };
 
-    // Envia os dados para o Google Apps Script
+    // Envia os dados como JSON para o Google Apps Script
     fetch('https://script.google.com/macros/s/AKfycbzKX-uqS-ZZKcteIRU6vyrCk8Jlo2iYNdOKXLjmzYcCA7wZgbPabDvPlVFFVmjGdcpq/exec', {
         method: 'POST',
-        body: formData,
-        mode: 'no-cors' // Ajusta para evitar problemas de CORS, mas sem retorno detalhado
+        headers: {
+            'Content-Type': 'application/json' // Define o tipo de conteúdo como JSON
+        },
+        body: JSON.stringify(data), // Envia os dados como JSON
     })
-    .then(() => {
-        alert('Produto salvo com sucesso!');
-        document.getElementById('dataForm').reset();
+    .then(response => response.json()) // Converte a resposta para JSON
+    .then(data => {
+        if (data.result === 'success') {
+            alert('Produto salvo com sucesso!');
+            document.getElementById('dataForm').reset(); // Limpa o formulário
+        } else {
+            alert('Erro ao enviar os dados: ' + data.error);
+        }
     })
     .catch(error => {
         console.error('Erro:', error);
         alert('Ocorreu um erro ao enviar os dados. Por favor, tente novamente.');
     });
 });
-
-// Função para voltar à página anterior
-function goBack() {
-    window.history.back();  // Retorna para a página anterior
-}
