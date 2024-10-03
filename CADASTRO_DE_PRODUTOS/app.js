@@ -1,25 +1,40 @@
-// Função para enviar dados
 document.getElementById('dataForm').addEventListener('submit', (e) => {
     e.preventDefault();
-    const sku = document.getElementById('sku').value;
-    const descricao = document.getElementById('descricao').value;
-    const tipo = document.getElementById('tipo').value;
-    const unidade = document.getElementById('unidade').value;
-    const grupo = document.getElementById('grupo').value;
-    const quantidade = document.getElementById('quantidade').value;
-    const valor_unitario = document.getElementById('valor_unitario').value;
-    const valor_total = document.getElementById('valor_total').value;
-    const fornecedor = document.getElementById('fornecedor').value;
-    const data_cadastro = document.getElementById('data_cadastro').value;
-    const data_vencimento = document.getElementById('data_vencimento').value;
-
-    // Aqui você pode adicionar a lógica para enviar os dados para o seu banco de dados
-
-    alert('Produto salvo com sucesso!');
-    document.getElementById('dataForm').reset();
+    
+    // Captura os dados do formulário
+    const formData = new FormData();
+    formData.append('sku', document.getElementById('sku').value);
+    formData.append('descricao', document.getElementById('descricao').value);
+    formData.append('tipo', document.getElementById('tipo').value);
+    formData.append('unidade', document.getElementById('unidade').value);
+    formData.append('grupo', document.getElementById('grupo').value);
+    formData.append('quantidade', document.getElementById('quantidade').value);
+    formData.append('fornecedor', document.getElementById('fornecedor').value);
+    formData.append('data_cadastro', document.getElementById('data_cadastro').value);
+    formData.append('data_vencimento', document.getElementById('data_vencimento').value);
+    formData.append('aba', 'cadastrodeprodutos'); // Adiciona a aba de destino
+    
+    // Envia os dados para o Google Apps Script
+    fetch('https://script.google.com/macros/s/AKfycbzKX-uqS-ZZKcteIRU6vyrCk8Jlo2iYNdOKXLjmzYcCA7wZgbPabDvPlVFFVmjGdcpq/exec', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())  // Transforma a resposta em JSON
+    .then(data => {
+        if (data.result === 'success') {
+            alert('Produto salvo com sucesso!');
+            document.getElementById('dataForm').reset();  // Limpa o formulário
+        } else {
+            alert('Erro ao enviar os dados: ' + data.error);
+        }
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        alert('Ocorreu um erro ao enviar os dados. Por favor, tente novamente.');
+    });
 });
 
-// Função para calcular o valor total
+// Função para calcular o valor total (se necessário)
 function calcularValorTotal() {
     const quantidade = document.getElementById('quantidade').value;
     const valor_unitario = document.getElementById('valor_unitario').value;
