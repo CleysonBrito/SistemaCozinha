@@ -17,19 +17,12 @@ document.getElementById('dataForm').addEventListener('submit', (e) => {
     // Envia os dados como JSON para o Google Apps Script
     fetch('https://script.google.com/macros/s/AKfycbzKX-uqS-ZZKcteIRU6vyrCk8Jlo2iYNdOKXLjmzYcCA7wZgbPabDvPlVFFVmjGdcpq/exec', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'  // Especifica que os dados estão em formato JSON
-        },
-        body: JSON.stringify(data)  // Envia os dados como um objeto JSON
+        body: formData,
+        mode: 'no-cors'  // Desativa o CORS, mas não permite acessar a resposta
     })
-    .then(response => response.json())  // Converte a resposta para JSON
-    .then(data => {
-        if (data.result === 'success') {
-            alert('Produto salvo com sucesso!');
-            document.getElementById('dataForm').reset();  // Limpa o formulário
-        } else {
-            alert('Erro ao enviar os dados: ' + data.error);
-        }
+    .then(() => {
+        alert('Produto salvo com sucesso!');
+        document.getElementById('dataForm').reset();  // Limpa o formulário
     })
     .catch(error => {
         console.error('Erro:', error);
