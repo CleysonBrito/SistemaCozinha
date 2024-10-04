@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cadastros de Produtos</title>
   <link rel="shortcut icon" href="./IMAGENS/Logo Icone.ico" type="image/x-icon">
-  <link rel="stylesheet" href="./CADASTRO_DE_PRODUTOS/styles.css">
+  <link rel="stylesheet" href="./CADASTRO_DE_FORNECEDORES/styles.css">
 </head>
 <body>
   <header class="header">
@@ -17,48 +17,49 @@
   </header>
   <div class="container">
     <form id="product-form">
-      <label for="sku">SKU:</label>
-      <input type="text" id="sku" name="sku" required>
+      <label for="cnpj">CNPJ:</label>
+      <input type="text" id="cnpj" name="cnpj" required>
       
-      <label for="descricao">DESCRIÇÃO:</label>
-      <input type="text" id="descricao" name="descricao" required>
+      <label for="razao-social">RAZÃO SOCIAL:</label>
+      <input type="text" id="razao-social" name="razao-social" required>
       
-      <label for="tipo">Tipo:</label>
-      <select id="tipo" name="tipo" required> 
-          <option value="FRUTA">FRUTA</option>
-          <option value="VERDURA">VERDURA</option>
-          <option value="LEGUMES">LEGUMES</option>
-          <option value="BOVINA">BOVINA</option>
-          <option value="AVE">AVE</option>
-          <option value="SUÍNA">SUÍNA</option>
-          <option value="PESCADO">PESCADO</option>
-          <option value="OVOS">OVOS</option>
-          <option value="MERCADO">MERCADO</option>
+      <label for="endereco">ENDEREÇO:</label>
+      <input type="text" id="endereco" name="endereco" required>
+      
+      <label for="numero">NÚMERO:</label>
+      <input type="text" id="numero" name="numero">
+      
+      <label for="bairro">BAIRRO:</label>
+      <input type="text" id="bairro" name="bairro">
+      
+      <label for="cep">CEP:</label>
+      <input type="text" id="cep" name="cep">
+
+      <label for="municipio">MUNICÍPIO:</label>
+      <input type="text" id="municipio" name="municipio">
+
+      <label for="uf">UF:</label>
+      <input type="text" id="uf" name="uf">
+      
+      <label for="pais">PAÍS:</label>
+      <select id="pais" name="pais" required>
+        <option value="Brasil">Brasil</option>
+        <option value="Estados Unidos">Estados Unidos</option>
+        <option value="Canadá">Canadá</option>
+        <!-- Outras opções aqui -->
       </select>
-  
-      <label for="unidade">UNIDADE:</label>
-      <input type="text" id="unidade" name="unidade">
       
-      <label for="grupo">GRUPO:</label>
-      <select id="grupo" name="grupo" required> 
-          <option value="MANTIMENTOS">MANTIMENTOS</option>
-          <option value="HORTALIÇAS">HORTALIÇAS</option>
-          <option value="PROTEINAS">PROTEINAS</option>
-          <option value="DOAÇÕES">DOAÇÕES</option>
-      </select>
+      <label for="complemento">COMPLEMENTO:</label>
+      <input type="text" id="complemento" name="complemento">
       
-      <label for="quantidade">QUANTIDADE:</label>
-      <input type="text" id="quantidade" name="quantidade">
-
-      <label for="fornecedor">FORNECEDOR:</label>
-      <input type="text" id="fornecedor" name="fornecedor">
-
-      <label for="data_cadastro">DATA CADASTRO:</label>
-      <input type="date" id="data_cadastro" name="data_cadastro">
+      <label for="telefone">TELEFONE:</label>
+      <input type="text" id="telefone" name="telefone">
       
-      <label for="data_vencimento">DATA VENCIMENTO:</label>
-      <input type="date" id="data_vencimento" name="data_vencimento">
-
+      <label for="email">E-MAIL:</label>
+      <input type="email" id="email" name="email" required>
+      <br>
+      <br>
+      
       <div class="buttons">
         <button type="submit">Salvar</button>
         <button type="reset">Limpar</button>
@@ -66,7 +67,6 @@
       </div>
     </form>
   </div>
-  <!-- O script deve vir aqui para garantir que o DOM está carregado -->
   <script src="./CADASTRO_DE_PRODUTOS/app.js"></script>
 </body>
 </html>
