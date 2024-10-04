@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
             var formData = new FormData(form);  // Coleta os dados do formulário
 
             // Substitua o URL pelo seu link do Google Apps Script correto
-            fetch('https://script.google.com/macros/s/AKfycbzKX-uqS-ZZKcteIRU6vyrCk8Jlo2iYNdOKXLjmzYcCA7wZgbPabDvPlVFFVmjGdcpq/exec', {
+            fetch('https://script.google.com/macros/s/AKfycbyGm_6q28iZcokNj91pM5KeSLit8x6nc_m-FjJ7Yq2wDX0ru_V-0C4RFsPiValms1ph/exec', {
                 method: 'POST',
                 body: formData
             })
