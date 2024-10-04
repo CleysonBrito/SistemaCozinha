@@ -12,7 +12,7 @@ document.getElementById('supplier-form').addEventListener('submit', function(e) 
     .then(data => {
         if (data.result === 'success') {
             alert('Dados enviados com sucesso!');
-            document.getElementById('supplier-form').reset();  // Limpa o formulário
+            document.getElementById('product-form').reset();  // Limpa o formulário
         } else {
             alert('Erro ao enviar os dados: ' + data.error);
         }
