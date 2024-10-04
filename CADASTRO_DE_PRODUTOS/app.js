@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('cadastroProdutos-form');
+    const form = document.getElementById('product-form');
 
     if (form) { // Verifica se o formulário existe no DOM
         form.addEventListener('submit', function(e) {
@@ -32,6 +32,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     } else {
-        console.error('Formulário "cadastroProdutos-form" não encontrado no DOM.');
+        console.error('Formulário "product-form" não encontrado no DOM.');
     }
 });
