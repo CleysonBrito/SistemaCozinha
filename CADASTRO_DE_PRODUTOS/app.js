@@ -1,4 +1,4 @@
-document.getElementById('supplier-form').addEventListener('submit', function(e) {
+document.getElementById('product-form').addEventListener('submit', function(e) {
     e.preventDefault();  // Evita o envio padrão do formulário
 
     var formData = new FormData(this);  // Coleta os dados do formulário
