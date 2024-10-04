@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('cadastroProdutos');
+    const form = document.getElementById('cadastroProdutos-form');
 
     if (form) { // Verifica se o formulário existe no DOM
         form.addEventListener('submit', function(e) {
