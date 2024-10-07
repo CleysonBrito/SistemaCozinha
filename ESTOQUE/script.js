@@ -6,7 +6,7 @@ function searchItems() {
     const nome = document.getElementById('nomeFilter').value;
 
     // Monta a URL com os filtros aplicados
-    let url = 'https://script.google.com/macros/s/AKfycbzZbMGxMa2zysqMnw0DcK8kuajQ3R-0matgxl7KICCuqFVHmFjHZlvExwrzgNwO6SSJ/exec?';
+    let url = 'https://script.google.com/macros/s/AKfycbwy-vDfbI6i6QIov8n_Anzrpv7Rny_5__PgjFE69jbiHAtsDHGsRvBvaENu07tQsfE4/exec';
     
     if (startDate) url += `startDate=${startDate}&`;
     if (endDate) url += `endDate=${endDate}&`;
