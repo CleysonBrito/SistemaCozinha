@@ -1,7 +1,18 @@
-// Função para buscar dados da planilha via Apps Script
-function loadItems() {
-    const url = 'https://script.google.com/macros/s/AKfycbyPKIAw5LrdHSouENthZTXzB8xWXoSruGXPJ9grxio184rDrkZKzENTPx9uEYWKZg85/exec'; // URL do Apps Script
+// Função para buscar os itens com filtros
+function searchItems() {
+    const startDate = document.getElementById('startDate').value;
+    const endDate = document.getElementById('endDate').value;
+    const sku = document.getElementById('skuFilter').value;
+    const nome = document.getElementById('nomeFilter').value;
+
+    // Monta a URL com os filtros aplicados
+    let url = 'https://script.google.com/macros/s/AKfycbzZbMGxMa2zysqMnw0DcK8kuajQ3R-0matgxl7KICCuqFVHmFjHZlvExwrzgNwO6SSJ/exec?';
     
+    if (startDate) url += `startDate=${startDate}&`;
+    if (endDate) url += `endDate=${endDate}&`;
+    if (sku) url += `sku=${encodeURIComponent(sku)}&`;
+    if (nome) url += `nome=${encodeURIComponent(nome)}&`;
+
     fetch(url)
         .then(response => response.json())
         .then(data => {
@@ -29,5 +40,5 @@ function loadItems() {
         });
 }
 
-// Chame a função para carregar os itens quando a página carregar
-window.onload = loadItems;
+// Chama a função quando a página é carregada para mostrar todos os itens inicialmente
+window.onload = searchItems;

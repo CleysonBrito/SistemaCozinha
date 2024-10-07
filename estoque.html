@@ -4,35 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estoque</title>
-    <link rel="shortcut icon" href="./IMAGENS/Logo Icone.ico" type="image/x-icon">
     <link rel="stylesheet" href="./ESTOQUE/styles.css">
-    
-    <!-- Adicione o SDK do Firebase compatível com navegador -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
-    <script>
-        // Configuração do Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyDjuoTIoL4CX8KSkWXos1JEYQ9u0KhySmk",
-            authDomain: "bancocozinha.firebaseapp.com",
-            projectId: "bancocozinha",
-            storageBucket: "bancocozinha.appspot.com",
-            messagingSenderId: "424572545119",
-            appId: "1:424572545119:web:bc20a45001fbac1cbfd3ea",
-            measurementId: "G-5J6XFE0H02"
-        };
-
-        // Inicializar o Firebase
-        firebase.initializeApp(firebaseConfig);
-    </script>
 </head>
 <body>
     <header>
-        <img src="./IMAGENS/Reciclar_Logo_Principal_Vertical_Negativo.png" alt="Logo Esquerdo" class="logo">
         <h2>ESTOQUE/CONSULTA</h2>
-        <button class="home-button" onclick="goHome()">
-            <img src="./IMAGENS/Layout.png" alt="Home">
-        </button>
     </header>
     <main>
         <div class="search-container">
@@ -40,12 +16,16 @@
             <input type="date" id="startDate">
             <label for="endDate">Data Final:</label>
             <input type="date" id="endDate">
-            <label for="searchName">Nome:</label>
-            <input type="text" id="searchName">
-            <label for="searchSKU">SKU:</label>
-            <input type="text" id="searchSKU">
+
+            <label for="skuFilter">SKU:</label>
+            <input type="text" id="skuFilter" placeholder="Digite o SKU">
+
+            <label for="nomeFilter">Nome do Produto:</label>
+            <input type="text" id="nomeFilter" placeholder="Digite o nome do produto">
+
             <button onclick="searchItems()">Pesquisar</button>
         </div>
+
         <table id="itemsTable">
             <thead>
                 <tr>
@@ -66,7 +46,6 @@
                 <!-- Os itens cadastrados aparecerão aqui -->
             </tbody>
         </table>
-        <button onclick="exportToExcel()">Exportar</button>
     </main>
     <script src="./ESTOQUE/script.js"></script>
 </body>
