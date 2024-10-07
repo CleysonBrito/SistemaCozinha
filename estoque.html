@@ -40,7 +40,11 @@
             <input type="date" id="startDate">
             <label for="endDate">Data Final:</label>
             <input type="date" id="endDate">
-            <button onclick="searchItemsByDate()">Pesquisar</button>
+            <label for="searchName">Nome:</label>
+            <input type="text" id="searchName">
+            <label for="searchSKU">SKU:</label>
+            <input type="text" id="searchSKU">
+            <button onclick="searchItems()">Pesquisar</button>
         </div>
         <table id="itemsTable">
             <thead>
