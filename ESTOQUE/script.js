@@ -1,6 +1,6 @@
 // Função para buscar dados da planilha via Apps Script
 function loadItems() {
-    const url = 'https://script.google.com/macros/s/AKfycbzZbMGxMa2zysqMnw0DcK8kuajQ3R-0matgxl7KICCuqFVHmFjHZlvExwrzgNwO6SSJ/exec'; // URL do Apps Script
+    const url = 'https://script.google.com/macros/s/AKfycbxZ0uZf8rJUUw6Dif_Nc2_5ov_5njkOOqFDOnbna-IokTi290cHtF34KUw11ICmT_CV/exec'; // URL do Apps Script
     
     fetch(url)
         .then(response => response.json())
