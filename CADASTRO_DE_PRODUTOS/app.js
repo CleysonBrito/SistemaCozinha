@@ -4,7 +4,7 @@ document.getElementById('product-form').addEventListener('submit', function(e) {
     var formData = new FormData(this);  // Coleta os dados do formulário
 
     // Substitua o URL pelo seu link do Google Apps Script
-    fetch('https://script.google.com/macros/s/AKfycbyEgDZgYC7qVuZljIs5THNNRhBsEM1lgp2hBmBGlB67G3TRv1RKir7G1RTeNyuSD_jv/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbzZbMGxMa2zysqMnw0DcK8kuajQ3R-0matgxl7KICCuqFVHmFjHZlvExwrzgNwO6SSJ/exec', {
         method: 'POST',
         body: formData
     })
