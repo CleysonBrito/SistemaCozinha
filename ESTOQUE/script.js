@@ -1,3 +1,8 @@
+// Função para redirecionar para a página inicial
+function goHome() {
+    window.location.href = './home.html';
+}
+
 // Função para buscar os itens com filtros
 function searchItems() {
     const startDate = document.getElementById('startDate').value;
@@ -16,7 +21,7 @@ function searchItems() {
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            const tbody = document.getElementById('itemsTable').getElementsByTagName('tbody')[0];
+            const tbody = document.getElementById('itemsTable').getElementsByTagName('tbody');
             tbody.innerHTML = ''; // Limpa o conteúdo anterior
 
             data.forEach((produto) => {

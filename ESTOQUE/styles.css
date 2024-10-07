@@ -60,12 +60,12 @@ button:hover {
     background-color: #00009C;
 }
 
-
 h2 {
     align-items: center;
     font-family: verdana, bold;
     color: aliceblue;
 }
+
 /* Media Queries para telas menores */
 @media (max-width: 768px) {
     .item-entry {
