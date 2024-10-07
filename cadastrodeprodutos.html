@@ -25,13 +25,31 @@
       <input type="text" id="descricao" name="descricao" required>
       
       <label for="tipo">TIPO:</label>
-      <input type="text" id="tipo" name="tipo" required>
+      <select id="tipo" name="tipo" required>
+        <option value="Frutas">FRUTAS</option>
+        <option value="Legumes">LEGUMES</option>
+        <option value="Verduras">VERDURAS</option>
+        <option value="Bovina">BOVINA</option>
+        <option value="Ave">AVE</option>
+        <option value="Suína">SUÍNA</option>
+        <option value="Pescado">PESCADO</option>
+        <option value="Ovo">OVO</option>
+        <option value="Mercado">MERCADO</option>
       
       <label for="unidade">UNIDADE:</label>
-      <input type="text" id="unidade" name="unidade">
+      <select id="unidade" name="unidade" required>
+        <option value="Un">UN</option>
+        <option value="kG">KG</option>
+
+
       
       <label for="grupo">GRUPO:</label>
-      <input type="text" id="grupo" name="grupo">
+      <select id="grupo" name="grupo" required>
+        <option value="Mantimentos">MANTIMENTOS</option>
+        <option value="Hortaliças">HORTALIÇAS</option>
+        <option value="Proteínas">PROTEÍNAS</option>
+        <option value="Doações">DOAÇÕES</option>
+
       
       <label for="quantidade">QUANTIDADE:</label>
       <input type="text" id="quantidade" name="quantidade">
@@ -39,31 +57,16 @@
       <label for="fornecedor">FORNECEDOR:</label>
       <input type="text" id="fornecedor" name="fornecedor">
 
-      <label for="data_cadastro">DATA CADASTRO:</label>
-      <input type="text" id="data_cadastro" name="data_cadastro">
-
-      <label for="data_vencimento">DATA VENCIMENTO:</label>
-      <input type="text" id="data_vencimento" name="data_vencimento">
-
-
-
+      <label for="data_cadastro">Data Cadastro:</label>
+      <input type="date" id="data_cadastro" name="data_cadastro" required> 
       
-      <label for="pais">PAÍS:</label>
-      <select id="pais" name="pais" required>
-        <option value="Brasil">Brasil</option>
-        <option value="Estados Unidos">Estados Unidos</option>
-        <option value="Canadá">Canadá</option>
+      <label for="data_vencimento">Data Vencimento:</label>
+      <input type="date" id="data_vencimento" name="data_vencimento" required> 
+
+
         <!-- Outras opções aqui -->
       </select>
       
-      <label for="complemento">COMPLEMENTO:</label>
-      <input type="text" id="complemento" name="complemento">
-      
-      <label for="telefone">TELEFONE:</label>
-      <input type="text" id="telefone" name="telefone">
-      
-      <label for="email">E-MAIL:</label>
-      <input type="email" id="email" name="email" required>
       <br>
       <br>
       
