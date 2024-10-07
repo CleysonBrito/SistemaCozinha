@@ -1,8 +1,3 @@
-// Função para redirecionar para a página inicial
-function goHome() {
-    window.location.href = './home.html';
-}
-
 // Função para buscar dados da planilha via Apps Script
 function loadItems() {
     const url = 'https://script.google.com/macros/s/AKfycbyPKIAw5LrdHSouENthZTXzB8xWXoSruGXPJ9grxio184rDrkZKzENTPx9uEYWKZg85/exec'; // URL do Apps Script
