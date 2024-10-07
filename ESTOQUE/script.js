@@ -1,7 +1,4 @@
-
-
-
-// Função para buscar os itens com filtros
+// Função para buscar os itens com filtros ou sem filtros
 function searchItems() {
     const startDate = document.getElementById('startDate').value;
     const endDate = document.getElementById('endDate').value;
@@ -19,7 +16,7 @@ function searchItems() {
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            const tbody = document.getElementById('itemsTable').getElementsByTagName('tbody');
+            const tbody = document.querySelector('#itemsTable tbody');
             tbody.innerHTML = ''; // Limpa o conteúdo anterior
 
             data.forEach((produto) => {
