@@ -2,57 +2,81 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrada</title>
     <link rel="shortcut icon" href="./IMAGENS/Logo Icone.ico" type="image/x-icon">
-    <title>Estoque</title>
-    <link rel="stylesheet" href="./ESTOQUE/styles.css">
+    <link rel="stylesheet" href="./ENTRADA_PRODUTOS/styles.css">
+    
+    <!-- Adicione o SDK do Firebase compatível com navegador -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+    <script>
+        // Configuração do Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyDjuoTIoL4CX8KSkWXos1JEYQ9u0KhySmk",
+            authDomain: "bancocozinha.firebaseapp.com",
+            databaseURL: "https://bancocozinha-default-rtdb.firebaseio.com",
+            projectId: "bancocozinha",
+            storageBucket: "bancocozinha.appspot.com",
+            messagingSenderId: "424572545119",
+            appId: "1:424572545119:web:bc20a45001fbac1cbfd3ea",
+            measurementId: "G-5J6XFE0H02"
+        };
+
+        // Inicializar o Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="./ENTRADA_PRODUTOS/app.js" defer></script>
 </head>
 <body>
-    <header>
+    <div class="header">
         <img src="./IMAGENS/Reciclar_Logo_Principal_Vertical_Negativo.png" alt="Logo Esquerdo" class="logo">
-        <h2>ESTOQUE/CONSULTA</h2>
-        <button class="home-button" onclick="goHome()">
-            <img src="./IMAGENS/Layout.png" alt="Home">
-        </button>
-    </header>
-    <main>
-        <div class="search-container">
-            <label for="startDate">Data Inicial:</label>
-            <input type="date" id="startDate">
-            <label for="endDate">Data Final:</label>
-            <input type="date" id="endDate">
-
-            <label for="skuFilter">SKU:</label>
-            <input type="text" id="skuFilter" placeholder="Digite o SKU">
-
-            <label for="nomeFilter">Nome do Produto:</label>
-            <input type="text" id="nomeFilter" placeholder="Digite o nome do produto">
-
-            <button onclick="searchItems()">Pesquisar</button>
-        </div>
-
-        <table id="itemsTable">
-            <thead>
-                <tr>
-                    <th>SKU</th>
-                    <th>Descrição</th>
-                    <th>Tipo</th>
-                    <th>Unidade</th>
-                    <th>Grupo</th>
-                    <th>Quantidade</th>
-                    <th>Fornecedor</th>
-                    <th>Data Cadastro</th>
-                    <th>Data Vencimento</th>
-                    <th>Valor Unitário</th>
-                    <th>Valor Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Os itens cadastrados aparecerão aqui -->
-            </tbody>
-        </table>
-    </main>
-    <!-- Certifique-se de carregar o script aqui -->
-    <script src="./ESTOQUE/script.js"></script>
+        <h1>ENTRADA</h1>
+        <img src="./IMAGENS/Layout.png" alt="Home" class="home-icon" onclick="irParaHome()">
+    </div>
+    <div class="container">
+        <form id="dataForm">
+            <label for="sku">SKU:</label>
+            <input type="text" id="sku" required>
+            <label for="descricao">Descrição:</label>
+            <input type="text" id="descricao" required>
+            <label for="tipo">Tipo:</label>
+            <select id="tipo" required>
+                <option value="FRUTA">FRUTA</option>
+                <option value="VERDURA">VERDURA</option>
+                <option value="LEGUMES">LEGUMES</option>
+                <option value="BOVINA">BOVINA</option>
+                <option value="AVE">AVE</option>
+                <option value="SUÍNA">SUÍNA</option>
+                <option value="PESCADO">PESCADO</option>
+                <option value="OVOS">OVOS</option>
+                <option value="MERCADO">MERCADO</option>
+            </select>
+            <label for="unidade">Unidade:</label>
+            <input type="text" id="unidade" required>
+            <label for="grupo">Grupo:</label>
+            <select id="grupo" required>
+                <option value="MANTIMENTOS">MANTIMENTOS</option>
+                <option value="HORTALIÇAS">HORTALIÇAS</option>
+                <option value="PROTEINAS">PROTEINAS</option>
+                <option value="DOAÇÕES">DOAÇÕES</option>
+            </select>
+            <label for="quantidade">Quantidade:</label>
+            <input type="number" id="quantidade" required oninput="calcularValorTotal()">
+            <label for="valor_unitario">Valor Unitário (R$):</label>
+            <input type="number" id="valor_unitario" required oninput="calcularValorTotal()" step="0.01">
+            <label for="valor_total">Valor Total (R$):</label>
+            <input type="number" id="valor_total" required disabled>
+            <label for="fornecedor">Fornecedor:</label>
+            <input type="text" id="fornecedor" required>
+            <label for="data_cadastro">Data Cadastro:</label>
+            <input type="date" id="data_cadastro" required>
+            <label for="data_vencimento">Data Vencimento:</label>
+            <input type="date" id="data_vencimento" required>
+            <button type="submit">Salvar</button>
+            <button type="button" onclick="limparFormulario()">Limpar</button>
+            <button type="button" onclick="irParaHome()">Voltar para Home</button>
+        </form>
+        <div id="output"></div>
+    </div>
 </body>
 </html>
