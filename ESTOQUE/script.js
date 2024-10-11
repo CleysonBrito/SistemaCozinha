@@ -6,7 +6,7 @@ function searchItems() {
     const nome = document.getElementById('nomeFilter').value;
 
     // Monta a URL com os filtros aplicados
-    let url = 'https://script.google.com/macros/s/AKfycbwy-vDfbI6i6QIov8n_Anzrpv7Rny_5__PgjFE69jbiHAtsDHGsRvBvaENu07tQsfE4/exec';
+    let url = 'https://script.google.com/macros/s/AKfycbwy-vDfbI6i6QIov8n_Anzrpv7Rny_5__PgjFE69jbiHAtsDHGsRvBvaENu07tQsfE4/exec?';
     
     if (startDate) url += `startDate=${startDate}&`;
     if (endDate) url += `endDate=${endDate}&`;
@@ -42,8 +42,3 @@ function searchItems() {
 
 // Chama a função quando a página é carregada para mostrar todos os itens inicialmente
 window.onload = searchItems;
-
-// Função para redirecionar para a página inicial
-function goHome() {
-    window.location.href = './home.html';
-}
