@@ -13,8 +13,14 @@ function searchItems() {
     if (sku) url += `sku=${encodeURIComponent(sku)}&`;
     if (nome) url += `nome=${encodeURIComponent(nome)}&`;
 
-    fetch(url)
-        .then(response => response.json())
+    // Requisição fetch com modo 'cors'
+    fetch(url, { mode: 'cors' })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro na requisição: ' + response.status);
+            }
+            return response.json();
+        })
         .then(data => {
             const tbody = document.querySelector('#itemsTable tbody');
             tbody.innerHTML = ''; // Limpa o conteúdo anterior
