@@ -42,3 +42,8 @@ function searchItems() {
 
 // Chama a função quando a página é carregada para mostrar todos os itens inicialmente
 window.onload = searchItems;
+
+// Função para redirecionar para a página inicial
+function goHome() {
+    window.location.href = './home.html';
+}
