@@ -6,6 +6,9 @@
     <link rel="shortcut icon" href="./IMAGENS/Logo Icone.ico" type="image/x-icon">
     <title>Estoque</title>
     <link rel="stylesheet" href="./ESTOQUE/styles.css">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"></script>
 </head>
 <body>
     <header>
@@ -28,7 +31,7 @@
             <label for="nomeFilter">Nome do Produto:</label>
             <input type="text" id="nomeFilter" placeholder="Digite o nome do produto">
 
-            <button onclick="searchItems()">Pesquisar</button>
+            <button onclick="listarEntradas()">Pesquisar</button>
         </div>
 
         <table id="itemsTable">

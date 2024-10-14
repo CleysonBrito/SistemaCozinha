@@ -1,53 +1,46 @@
-// Função para buscar os itens com filtros ou sem filtros
-function searchItems() {
-    const startDate = document.getElementById('startDate').value;
-    const endDate = document.getElementById('endDate').value;
-    const sku = document.getElementById('skuFilter').value;
-    const nome = document.getElementById('nomeFilter').value;
+// Firebase config
+const firebaseConfig = {
+    apiKey: "SUA_API_KEY",
+    authDomain: "SEU_AUTH_DOMAIN",
+    databaseURL: "SUA_DATABASE_URL",
+    projectId: "SEU_PROJECT_ID",
+    storageBucket: "SEU_STORAGE_BUCKET",
+    messagingSenderId: "SEU_MESSAGING_SENDER_ID",
+    appId: "SEU_APP_ID"
+};
 
-    // Monta a URL com os filtros aplicados
-    let url = 'https://script.google.com/macros/s/AKfycbwPCuJ7VFco0J-Is-wtQvLVpJN3x6-xoFFnKRrwjI0YP1ZvCG6-_STNFosltFLVQP8/exec';
-    
-    if (startDate) url += `startDate=${startDate}&`;
-    if (endDate) url += `endDate=${endDate}&`;
-    if (sku) url += `sku=${encodeURIComponent(sku)}&`;
-    if (nome) url += `nome=${encodeURIComponent(nome)}&`;
+// Inicializa o Firebase
+const app = firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+const ref = firebase.database().ref('entradaprodutos');
 
-    // Requisição fetch com modo 'cors'
-    fetch(url, { mode: 'cors' })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro na requisição: ' + response.status);
-            }
-            return response.json();
-        })
-        .then(data => {
-            const tbody = document.querySelector('#itemsTable tbody');
-            tbody.innerHTML = ''; // Limpa o conteúdo anterior
+// Função para listar entradas de 'entrada produtos'
+function listarEntradas() {
+    const tbody = document.querySelector('#itemsTable tbody');
+    tbody.innerHTML = ''; // Limpa o conteúdo anterior
 
-            data.forEach((produto) => {
-                const row = tbody.insertRow();
-                
-                row.insertCell(0).innerText = produto.sku;
-                row.insertCell(1).innerText = produto.descricao;
-                row.insertCell(2).innerText = produto.tipo;
-                row.insertCell(3).innerText = produto.unidade;
-                row.insertCell(4).innerText = produto.grupo;
-                row.insertCell(5).innerText = produto.quantidade;
-                row.insertCell(6).innerText = produto.fornecedor;
-                row.insertCell(7).innerText = new Date(produto.data_cadastro).toLocaleDateString(); // Formata a data
-                row.insertCell(8).innerText = new Date(produto.data_vencimento).toLocaleDateString(); // Formata a data
-                row.insertCell(9).innerText = produto.valor_unitario;
-                row.insertCell(10).innerText = produto.valor_total;
-            });
-        })
-        .catch(error => {
-            console.error('Erro ao buscar dados:', error);
+    ref.once('value', (snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+            const produto = childSnapshot.val();
+            const row = tbody.insertRow();
+
+            row.insertCell(0).innerText = produto.sku;
+            row.insertCell(1).innerText = produto.descricao;
+            row.insertCell(2).innerText = produto.tipo;
+            row.insertCell(3).innerText = produto.unidade;
+            row.insertCell(4).innerText = produto.grupo;
+            row.insertCell(5).innerText = produto.quantidade;
+            row.insertCell(6).innerText = produto.fornecedor;
+            row.insertCell(7).innerText = new Date(produto.data_cadastro).toLocaleDateString();
+            row.insertCell(8).innerText = new Date(produto.data_vencimento).toLocaleDateString();
+            row.insertCell(9).innerText = produto.valor_unitario;
+            row.insertCell(10).innerText = produto.valor_total;
         });
+    });
 }
 
-// Chama a função quando a página é carregada para mostrar todos os itens inicialmente
-window.onload = searchItems;
+// Chama a função quando a página é carregada
+window.onload = listarEntradas;
 
 // Função para redirecionar para a página inicial
 function goHome() {
