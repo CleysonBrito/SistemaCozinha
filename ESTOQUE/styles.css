@@ -24,15 +24,6 @@ header {
     margin: 20px;
 }
 
-#searchInput {
-    padding: 5px;
-    width: 200px;
-}
-
-#searchOptions {
-    padding: 5px;
-}
-
 table {
     width: 100%;
     border-collapse: collapse;
