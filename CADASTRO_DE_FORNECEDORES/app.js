@@ -43,7 +43,7 @@ document.getElementById('supplier-form').addEventListener('submit', function(e) 
             document.getElementById('supplier-form').reset(); // Limpa o formulário
         })
         .catch(error => {
-            console.error('Erro:', error);
+            console.error('Erro ao enviar os dados:', error);
             alert('Ocorreu um erro ao enviar os dados. Por favor, tente novamente.');
         });
 });
