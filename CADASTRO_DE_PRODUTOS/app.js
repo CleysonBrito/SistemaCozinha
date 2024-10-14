@@ -5,7 +5,7 @@ document.getElementById('product-form').addEventListener('submit', function(e) {
 
     // Substitua o URL pelo seu link do Google Apps Script
     fetch('https://script.google.com/macros/s/AKfycbzKX-uqS-ZZKcteIRU6vyrCk8Jlo2iYNdOKXLjmzYcCA7wZgbPabDvPlVFFVmjGdcpq/exec', {
-        method: 'POST',
+        method: 'doGet',
         body: formData
     })
     .then(response => response.json())  // Transforma a resposta em JSON
