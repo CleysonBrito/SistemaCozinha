@@ -1,73 +1,54 @@
-// Inicialização do Firebase (usando as configurações anteriores)
-const dbRef = firebase.database().ref("entradaprodutos");
+document.getElementById('homeButton').addEventListener('click', function() {
+    window.location.href = './home.html';
+});
 
-// Função para consultar dados no Firebase
-function consultarDados() {
-    const skuInput = document.getElementById('sku').value;
+function adicionarSaida() {
+    const sku = document.getElementById('sku').value;
+    const descricao = document.getElementById('descricao').value;
+    const tipo = document.getElementById('tipo').value;
+    const unidade = document.getElementById('unidade').value;
+    const quantidade = parseInt(document.getElementById('quantidade').value);
 
-    // Consulta com base no SKU (você pode mudar para outro campo de busca)
-    dbRef.orderByChild('sku').equalTo(skuInput).once('value', snapshot => {
-        if (snapshot.exists()) {
-            snapshot.forEach(childSnapshot => {
-                const data = childSnapshot.val();
-                
-                // Exibe os dados na tabela
-                const tableBody = document.getElementById('saidaTableBody');
-                const newRow = document.createElement('tr');
-                newRow.innerHTML = `
-                    <td>${new Date().toLocaleDateString()}</td>
-                    <td>${data.sku}</td>
-                    <td>${data.descricao}</td>
-                    <td>${data.quantidade}</td>
-                    <td>${data.unidade}</td>
-                    <td>${data.tipo}</td>
-                    <td>
-                        <button class="acaoButton" onclick="editarLinha(this, '${childSnapshot.key}')">Editar</button>
-                        <button class="acaoButton" onclick="excluirDados('${childSnapshot.key}')">Excluir</button>
-                    </td>`;
-                
-                tableBody.appendChild(newRow);
-            });
-        } else {
-            alert('Nenhum produto encontrado com este SKU.');
-        }
-    }).catch(error => {
-        console.error('Erro ao consultar dados:', error);
-    });
-}
-
-// Função para excluir dados do Firebase
-function excluirDados(key) {
-    const confirmDelete = confirm('Tem certeza que deseja excluir este produto?');
-    if (confirmDelete) {
-        dbRef.child(key).remove()
-        .then(() => {
-            alert('Produto excluído com sucesso!');
-            // Atualiza a tabela removendo a linha correspondente
-            document.getElementById('saidaTableBody').innerHTML = '';
-        })
-        .catch(error => {
-            console.error('Erro ao excluir produto:', error);
-        });
+    if (quantidade <= 5) {
+        alert('Estoque baixo! É necessário fazer uma compra.');
     }
+    const tableBody = document.getElementById('saidaTableBody');
+    const newRow = document.createElement('tr');
+    newRow.innerHTML = 
+        <td>${new Date().toLocaleDateString()}</td>
+        <td>${sku}</td>
+        <td>${descricao}</td>
+        <td>${quantidade}</td>
+        <td>${unidade}</td>
+        <td>${tipo}</td>
+        <td>
+            <button class="acaoButton" onclick="editarLinha(this)">Editar</button>
+            <button class="acaoButton" onclick="excluirLinha(this)">Excluir</button>
+        </td>;
+        
+    tableBody.appendChild(newRow);
 }
 
-// Atualiza a linha ao editar (similar ao adicionarSaida, mas atualizando)
-function editarLinha(button, key) {
+function editarLinha(button) {
     const row = button.parentNode.parentNode;
-    const sku = row.cells[1].innerText;
-    const descricao = row.cells[2].innerText;
-    const quantidade = row.cells[3].innerText;
-    const unidade = row.cells[4].innerText;
-    const tipo = row.cells[5].innerText;
-
-    // Preenche o formulário com os dados para edição
-    document.getElementById('sku').value = sku;
-    document.getElementById('descricao').value = descricao;
-    document.getElementById('quantidade').value = quantidade;
-    document.getElementById('unidade').value = unidade;
-    document.getElementById('tipo').value = tipo;
-
-    // Remove a linha da tabela
+    document.getElementById('sku').value = row.cells[1].innerText;
+    document.getElementById('descricao').value = row.cells[2].innerText;
+    document.getElementById('tipo').value = row.cells[5].innerText;
+    document.getElementById('unidade').value = row.cells[4].innerText;
+    document.getElementById('quantidade').value = row.cells[3].innerText;
     row.remove();
+}
+
+function excluirLinha(button) {
+    const row = button.parentNode.parentNode;
+    row.remove();
+}
+
+function salvar() {
+    alert('Dados salvos com sucesso!');
+}
+
+function limpar() {
+    document.getElementById('saidaForm').reset();
+    document.getElementById('saidaTableBody').innerHTML = '';
 }
