@@ -33,8 +33,11 @@ document.getElementById('product-form').addEventListener('submit', function(e) {
         data_vencimento: document.getElementById('data_vencimento').value
     };
 
-    // Salva os dados no Firebase
-    db.push(formData)
+    // Define a chave personalizada usando o SKU
+    const chaveProduto = formData.sku;  // Usando o SKU como chave única
+
+    // Salva os dados no Firebase sem criar identificador aleatório
+    db.child(chaveProduto).set(formData)
         .then(() => {
             alert('Dados enviados com sucesso!');
             document.getElementById('product-form').reset(); // Limpa o formulário

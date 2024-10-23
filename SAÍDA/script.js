@@ -1,7 +1,62 @@
-document.getElementById('homeButton').addEventListener('click', function() {
-    window.location.href = './home.html';
+// Configuração do Firebase
+const firebaseConfig = {
+    apiKey: "AIzaSyDjuoTIoL4CX8KSkWXos1JEYQ9u0KhySmk",
+    authDomain: "bancocozinha.firebaseapp.com",
+    databaseURL: "https://bancocozinha-default-rtdb.firebaseio.com",
+    projectId: "bancocozinha",
+    storageBucket: "bancocozinha.appspot.com",
+    messagingSenderId: "424572545119",
+    appId: "1:424572545119:web:bc20a45001fbac1cbfd3ea",
+    measurementId: "G-5J6XFE0H02"
+};
+
+// Inicializar o Firebase
+firebase.initializeApp(firebaseConfig);
+
+// Referência ao banco de dados
+const db = firebase.database().ref('cadastroProdutos');
+
+// Função para buscar o produto pelo SKU no Firebase
+document.getElementById('sku').addEventListener('change', function() {
+    const sku = document.getElementById('sku').value;
+
+    if (sku) {
+        buscarProdutoPorSKU(sku);
+    }
 });
 
+function buscarProdutoPorSKU(sku) {
+    // Verifica se a SKU existe no banco de dados
+    db.child(sku).once('value')
+        .then(function(snapshot) {
+            if (snapshot.exists()) {
+                const produto = snapshot.val();
+
+                // Preenche os campos do formulário com os dados do produto
+                document.getElementById('descricao').value = produto.descricao || '';
+                document.getElementById('tipo').value = produto.tipo || '';
+                document.getElementById('unidade').value = produto.unidade || '';
+                document.getElementById('quantidade').value = produto.quantidade || '';
+            } else {
+                alert('Produto não encontrado!');
+                // Limpa o formulário se o produto não for encontrado
+                limparFormulario();
+            }
+        })
+        .catch(function(error) {
+            console.error('Erro ao buscar o produto:', error);
+            alert('Erro ao buscar o produto. Por favor, tente novamente.');
+        });
+}
+
+function limparFormulario() {
+    document.getElementById('descricao').value = '';
+    document.getElementById('tipo').value = '';
+    document.getElementById('unidade').value = '';
+    document.getElementById('quantidade').value = '';
+}
+
+// Função para adicionar saída ao formulário
 function adicionarSaida() {
     const sku = document.getElementById('sku').value;
     const descricao = document.getElementById('descricao').value;
@@ -23,7 +78,6 @@ function adicionarSaida() {
     const tableBody = document.getElementById('saidaTableBody');
     const newRow = document.createElement('tr');
     
-    // Template literal corrigido para a linha da tabela
     newRow.innerHTML = `
         <td>${new Date().toLocaleDateString()}</td>
         <td>${sku}</td>
@@ -40,6 +94,7 @@ function adicionarSaida() {
     tableBody.appendChild(newRow);
 }
 
+// Demais funções continuam inalteradas...
 function editarLinha(button) {
     const row = button.parentNode.parentNode;
     document.getElementById('sku').value = row.cells[1].innerText;
