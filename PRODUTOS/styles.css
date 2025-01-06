@@ -39,18 +39,6 @@ body {
     font-weight: bold;
 }
 
-#total-valor {
-    margin-right: 10px;
-    font-weight: bold;
-}
-
-
-#quantidade-total-kg {
-    margin-right: 10px;
-    font-weight: bold;
-}
-
-
 .total-vermelho {
     color: red;
 }
@@ -104,6 +92,3 @@ th, td {
     text-decoration: none;
     cursor: pointer;
 }
-
-
-

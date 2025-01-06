@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device=width, initial-scale=1.0">
+    <title>Refeições Servidas</title>
+    <link rel="stylesheet" href="./REFEIÇÕES SERVIDAS/styles.css">
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
+
+</head>
+<body>
+    <header class="header">
+        <img src="./IMAGENS/Reciclar_Logo_Principal_Vertical_Negativo.png" alt="Logo Esquerda" class="logo logo-esquerda">
+        <h1>REFEIÇÕES SERVIDAS</h1>
+        <a href="./home.html">
+            <img src="./IMAGENS/Layout.png" alt="Logo Direita" class="logo logo-direita">
+        </a>
+    </header>
+    <main>
+        <section class="form-container">
+
+            <h2>Data</h2>
+            <input type="date" id="dataRefeicao">
+
+            <h2>Café da Manhã</h2>
+<textarea id="cafeDescricao" placeholder="Descreva o que foi servido no café da manhã..."></textarea>
+<div class="input-group">
+    <label>Total:</label>
+    <input type="number" id="cafeTotalQtd">
+    <label>Quantidade para Funcionários:</label>
+    <input type="number" id="cafeFuncionariosQtd">
+    <label>Quantidade para Jovens:</label>
+    <input type="number" id="cafeJovensQtd" readonly>
+</div>
+
+<h2>Almoço</h2>
+<textarea id="almocoDescricao" placeholder="Descreva o que foi servido no almoço..."></textarea>
+<div class="input-group">
+    <label>Total:</label>
+    <input type="number" id="almocoTotalQtd">
+    <label>Quantidade para Funcionários:</label>
+    <input type="number" id="almocoFuncionariosQtd">
+    <label>Quantidade para Jovens:</label>
+    <input type="number" id="almocoJovensQtd" readonly>
+</div>
+
+<h2>Lanche da Tarde</h2>
+<textarea id="lancheDescricao" placeholder="Descreva o que foi servido no lanche da tarde..."></textarea>
+<div class="input-group">
+    <label>Total:</label>
+    <input type="number" id="lancheTotalQtd">
+    <label>Quantidade para Funcionários:</label>
+    <input type="number" id="lancheFuncionariosQtd">
+    <label>Quantidade para Jovens:</label>
+    <input type="number" id="lancheJovensQtd" readonly>
+</div>
+
+
+<h2>Outras Refeições</h2>
+<textarea id="outrasDescricao" placeholder="Descreva o que foi servido..."></textarea>
+<div class="input-group">
+    <label>Total:</label>
+    <input type="number" id="outrasTotalQtd">
+    <label>Quantidade para Funcionários:</label>
+    <input type="number" id="outrasFuncionariosQtd">
+    <label>Quantidade para Jovens:</label>
+    <input type="number" id="outrasJovensQtd" readonly>
+</div>
+
+<h2>Sobras</h2>
+<textarea id="sobrasDescricao" placeholder="Descreva as sobras..."></textarea>
+
+<h2>Observação</h2>
+<textarea id="observacaoDescricao" placeholder="Descreva as observações..."></textarea>
+
+            
+            <h2>Desperdício</h2>
+            
+            <div class="input-group">
+                <label>Kg:</label>
+                <input type="number" id="desperdicioQtd">
+            </div>
+
+
+            <button onclick="salvarRefeicao()">Salvar</button>
+            
+
+            <section class="table-container">
+                <h2>Refeições Servidas</h2>
+                <button id="resumoRefeicoesBtn">Ir para Resumo de Refeições</button>
+            
+                <div>
+                    <label for="dataInicio">Data Início:</label>
+                    <input type="date" id="dataInicio">
+                    <label for="dataFim">Data Fim:</label>
+                    <input type="date" id="dataFim">
+                    <button onclick="filtrarPorPeriodo()">Filtrar</button>
+                    <button onclick="limparFiltro()">Limpar Filtro</button>
+                    <button onclick="exportarPorPeriodo()">Exportar</button>
+                </div>
+            
+                <div class="table-container">
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Café Descrição</th>
+                                    <th>Café Funcionários</th>
+                                    <th>Café Jovens</th>
+                                    <th>Almoço Descrição</th>
+                                    <th>Almoço Funcionários</th>
+                                    <th>Almoço Jovens</th>
+                                    <th>Lanche Descrição</th>
+                                    <th>Lanche Funcionários</th>
+                                    <th>Lanche Jovens</th>
+                                    <th>Outras Refeições Descrição</th>
+                                    <th>Outras Refeições Funcionários</th>
+                                    <th>Outras Refeições Jovens</th>
+                                    <th>Sobras</th>
+                                    <th>Observação</th>
+                                    <th>Desperdício</th>
+                                    <th>Excluir</th>
+                                    <th>exportar</th>
+                                </tr>
+                            </thead>
+                            <tbody id="refeicoesTabela">
+                                <!-- As linhas da tabela serão preenchidas dinamicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+           
+            
+    </main>
+    <script src="./REFEIÇÕES SERVIDAS/scripts.js"></script>
+</body>
+</html>

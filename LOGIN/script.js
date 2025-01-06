@@ -5,8 +5,8 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     const password = document.getElementById('password').value;
     const errorMessage = document.getElementById('errorMessage');
     
-    if (email === 'cleyson@reciclar.org.br' && password === '@123abc@')
-         {
+    if ((email === 'cleyson@reciclar.org.br' && password === '@123abc@') ||
+        (email === 'mislene.lages@reciclar.org.br' && password === '@123abc@')) {
         alert('Login bem-sucedido!');
         errorMessage.textContent = '';
         window.location.href = './home.html'; // Redireciona para home.html
@@ -14,9 +14,3 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
         errorMessage.textContent = 'E-mail ou senha incorretos.';
     }
 });
-
-
-
-
-
-

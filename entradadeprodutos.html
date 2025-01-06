@@ -1,82 +1,140 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Entrada</title>
-    <link rel="shortcut icon" href="./IMAGENS/Logo Icone.ico" type="image/x-icon">
-    <link rel="stylesheet" href="./ENTRADA_PRODUTOS/styles.css">
-    
-    <!-- Adicione o SDK do Firebase compatível com navegador -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
-    <script>
-        // Configuração do Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyDjuoTIoL4CX8KSkWXos1JEYQ9u0KhySmk",
-            authDomain: "bancocozinha.firebaseapp.com",
-            databaseURL: "https://bancocozinha-default-rtdb.firebaseio.com",
-            projectId: "bancocozinha",
-            storageBucket: "bancocozinha.appspot.com",
-            messagingSenderId: "424572545119",
-            appId: "1:424572545119:web:bc20a45001fbac1cbfd3ea",
-            measurementId: "G-5J6XFE0H02"
-        };
-
-        // Inicializar o Firebase
-        firebase.initializeApp(firebaseConfig);
-    </script>
-    <script src="./ENTRADA_PRODUTOS/app.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ENTRADA DE PRODUTOS</title>
+  <link rel="shortcut icon" href="./IMAGENS/Logo Icone.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./ENTRADA_PRODUTOS/styles.css">
 </head>
 <body>
-    <div class="header">
-        <img src="./IMAGENS/Reciclar_Logo_Principal_Vertical_Negativo.png" alt="Logo Esquerdo" class="logo">
-        <h1>ENTRADA</h1>
-        <img src="./IMAGENS/Layout.png" alt="Home" class="home-icon" onclick="irParaHome()">
+  <header class="header">
+    <img src="./IMAGENS/Reciclar_Logo_Principal_Vertical_Negativo.png" alt="Logo Esquerda" class="logo logo-esquerda">
+    <h1>ENTRADA DE PRODUTOS</h1>
+    <a href="./home.html">
+      <img src="./IMAGENS/Layout.png" alt="Logo Direita" class="logo logo-direita">
+    </a>
+  </header>
+  <div class="container">
+    <form id="product-form">
+
+      <label for="sku">SKU:</label>
+      <input type="text" id="sku" name="sku" required>
+      
+      <label for="descricao">DESCRIÇÃO:</label>
+      <input type="text" id="descricao" name="descricao" required>
+      
+      <label for="marca">MARCA:</label>
+      <input type="text" id="marca" name="marca"><br>
+
+      <label for="tipo">TIPO:</label>
+      <select id="tipo" name="tipo" required>
+        <option value="Frutas">FRUTAS</option>
+        <option value="Legumes">LEGUMES</option>
+        <option value="Verduras">VERDURAS</option>
+        <option value="Bovina">BOVINA</option>
+        <option value="Ave">AVE</option>
+        <option value="Suína">SUÍNA</option>
+        <option value="Pescado">PESCADO</option>
+        <option value="Ovo">OVO</option>
+        <option value="Mercado">MERCADO</option>
+      </select>
+      
+      <label for="unidade">UNIDADE:</label>
+      <select id="unidade" name="unidade" required>
+        <option value="Un">UN</option>
+        <option value="Kg">KG</option>
+      </select>
+
+      <label for="peso">PESO (KG):</label> 
+      <input type="text" id="peso" name="peso">
+      
+      <label for="grupo">GRUPO:</label>
+      <select id="grupo" name="grupo" required>
+        <option value="Mantimentos">MANTIMENTOS</option>
+        <option value="Hortaliças">HORTALIÇAS</option>
+        <option value="Proteínas">PROTEÍNAS</option>
+        <option value="Doações">DOAÇÕES</option>
+      </select>
+      
+      <label for="quantidade">QUANTIDADE:</label>
+      <input type="text" id="quantidade" name="quantidade">
+      
+
+      <label for="valor_unitario">VALOR UNITÁRIO:</label>
+      <input type="text" id="valor_unitario" name="valor_unitario" required>
+
+      <label for="valor_total">VALOR TOTAL:</label>
+      <input type="text" id="valor_total" name="valor_total" readonly>
+
+      <label for="peso_total">PESO TOTAL:</label> 
+      <input type="text" id="peso_total" name="peso_total" readonly>
+
+      <label for="fornecedor">FORNECEDOR:</label>
+      <input type="text" id="fornecedor" name="fornecedor">
+
+      <label for="data_cadastro">Data Cadastro:</label>
+      <input type="date" id="data_cadastro" name="data_cadastro" required> 
+      
+      <label for="data_vencimento">Data Vencimento:</label>
+      <input type="date" id="data_vencimento" name="data_vencimento" required> 
+
+      <br><br>
+      
+      <div class="buttons">
+        <button type="submit">Salvar</button>
+        <button type="reset">Limpar</button>
+        <button type="button" onclick="window.history.back()">Voltar</button>
+      </div>
+    </form>
+  </div>
+
+<!-- Modal -->
+<div id="productModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Selecione um Produto</h2>
+    <button type="button" onclick="window.location.href='cadastrodeprodutos.html'">CADASTRAR PRODUTOS</button>
+    <br>
+    <br>
+    <!-- Campos de Filtro -->
+    <div class="filter-container">
+      <label for="filter-sku">SKU:</label>
+      <input type="text" id="filter-sku" name="filter-sku" placeholder="Buscar por SKU">
+
+      <label for="filter-descricao">Descrição:</label>
+      <input type="text" id="filter-descricao" name="filter-descricao" placeholder="Buscar por Descrição">
+      
+      <label for="filter-tipo">Tipo:</label>
+      <input type="text" id="filter-tipo" name="filter-tipo" placeholder="Buscar por Tipo">
+
+      <label for="filter-grupo">Grupo:</label>
+      <input type="text" id="filter-grupo" name="filter-grupo" placeholder="Buscar por Grupo">
     </div>
-    <div class="container">
-        <form id="dataForm">
-            <label for="sku">SKU:</label>
-            <input type="text" id="sku" required>
-            <label for="descricao">Descrição:</label>
-            <input type="text" id="descricao" required>
-            <label for="tipo">Tipo:</label>
-            <select id="tipo" required>
-                <option value="FRUTA">FRUTA</option>
-                <option value="VERDURA">VERDURA</option>
-                <option value="LEGUMES">LEGUMES</option>
-                <option value="BOVINA">BOVINA</option>
-                <option value="AVE">AVE</option>
-                <option value="SUÍNA">SUÍNA</option>
-                <option value="PESCADO">PESCADO</option>
-                <option value="OVOS">OVOS</option>
-                <option value="MERCADO">MERCADO</option>
-            </select>
-            <label for="unidade">Unidade:</label>
-            <input type="text" id="unidade" required>
-            <label for="grupo">Grupo:</label>
-            <select id="grupo" required>
-                <option value="MANTIMENTOS">MANTIMENTOS</option>
-                <option value="HORTALIÇAS">HORTALIÇAS</option>
-                <option value="PROTEINAS">PROTEINAS</option>
-                <option value="DOAÇÕES">DOAÇÕES</option>
-            </select>
-            <label for="quantidade">Quantidade:</label>
-            <input type="number" id="quantidade" required oninput="calcularValorTotal()">
-            <label for="valor_unitario">Valor Unitário (R$):</label>
-            <input type="number" id="valor_unitario" required oninput="calcularValorTotal()" step="0.01">
-            <label for="valor_total">Valor Total (R$):</label>
-            <input type="number" id="valor_total" required disabled>
-            <label for="fornecedor">Fornecedor:</label>
-            <input type="text" id="fornecedor" required>
-            <label for="data_cadastro">Data Cadastro:</label>
-            <input type="date" id="data_cadastro" required>
-            <label for="data_vencimento">Data Vencimento:</label>
-            <input type="date" id="data_vencimento" required>
-            <button type="submit">Salvar</button>
-            <button type="button" onclick="limparFormulario()">Limpar</button>
-            <button type="button" onclick="irParaHome()">Voltar para Home</button>
-        </form>
-        <div id="output"></div>
-    </div>
+    
+    <table id="productTable">
+      <thead>
+        <tr>
+          <th>SKU</th>
+          <th>Descrição</th>
+          <th>Marca</th>
+          <th>Tipo</th>
+          <th>Unidade</th>
+          <th>Grupo</th>
+          <th>Fornecedor</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+
+
+
+
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+  <script src="./ENTRADA_PRODUTOS/app.js"></script>
 </body>
 </html>

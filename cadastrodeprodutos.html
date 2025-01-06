@@ -23,6 +23,13 @@
       
       <label for="descricao">DESCRIÇÃO:</label>
       <input type="text" id="descricao" name="descricao" required>
+
+      <!-- Novos campos de Marca e Peso -->
+      <label for="marca">MARCA:</label>
+      <input type="text" id="marca" name="marca" required>
+      
+      <label for="peso">PESO:</label>
+      <input type="text" id="peso" name="peso" required>
       
       <label for="tipo">TIPO:</label>
       <select id="tipo" name="tipo" required>
@@ -40,7 +47,7 @@
       <label for="unidade">UNIDADE:</label>
       <select id="unidade" name="unidade" required>
         <option value="Un">UN</option>
-        <option value="kG">KG</option>
+        <option value="Kg">KG</option>
       </select>
       
       <label for="grupo">GRUPO:</label>
@@ -51,19 +58,31 @@
         <option value="Doações">DOAÇÕES</option>
       </select>
       
-      <label for="quantidade">QUANTIDADE:</label>
-      <input type="text" id="quantidade" name="quantidade">
-
       <label for="fornecedor">FORNECEDOR:</label>
-      <input type="text" id="fornecedor" name="fornecedor">
+      <input type="text" id="fornecedor" name="fornecedor" readonly placeholder="Clique para selecionar um fornecedor">
 
       <label for="data_cadastro">Data Cadastro:</label>
       <input type="date" id="data_cadastro" name="data_cadastro" required> 
       
-      <label for="data_vencimento">Data Vencimento:</label>
-      <input type="date" id="data_vencimento" name="data_vencimento" required> 
-
       <br><br>
+
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close">×</span>
+          <h2>Escolha um Fornecedor</h2>
+          <table id="fornecedorTable">
+            <thead>
+              <tr>
+                <th>Razão Social</th>
+                <th>CNPJ</th>
+                <th>Contato</th>
+                <th>Selecionar</th>
+              </tr>
+            </thead>
+            <tbody id="fornecedorList"></tbody>
+          </table>
+        </div>
+      </div>
       
       <div class="buttons">
         <button type="submit">Salvar</button>

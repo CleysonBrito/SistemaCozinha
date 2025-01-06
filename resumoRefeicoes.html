@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refeições Servidas</title>
+    <link rel="stylesheet" href="./RESUMO_REFEIÇÃO_SERVIDAS/styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo-esquerda">
+            <img src="./IMAGENS/Reciclar_Logo_Principal_Vertical_Negativo.png" alt="Logo Esquerda">
+        </div>
+        <div class="titulo">
+            Refeições Servidas
+        </div>
+        <div class="logo-direita">
+            <img src="./IMAGENS/Layout.png" alt="Logo Direita" onclick="irParaHome()">
+        </div>
+    </header>
+    <main>
+        <div class="filtro-data">
+            <label for="dataInicio">Filtrar de:</label>
+            <input type="date" id="dataInicio">
+            <label for="dataFim">até:</label>
+            <input type="date" id="dataFim">
+            <button onclick="filtrarPorPeriodo()">Filtrar</button>
+            <button onclick="limparFiltro()">Limpar Filtro</button>
+            <button onclick="exportarParaExcel()">Exportar para Excel</button>
+
+            <button onclick="irParaCadastro()">Cadastrar Refeições</button>
+            <div id="totalRefeicoesServidas">Total de Refeições Servidas: 0</div>
+        </div>
+        <table id="tabela-refeicoes">
+            <thead>
+                <tr>
+                    <th>DATA</th>
+                    <th>(DESCRIÇÃO) CAFÉ</th>
+                    <th>TOTAL CAFÉ</th>
+                    <th>(DESCRIÇÃO) ALMOÇO</th>
+                    <th>TOTAL ALMOÇO</th>
+                    <th>(DESCRIÇÃO) LANCHE DA TARDE</th>
+                    <th>TOTAL LANCHE DA TARDE</th>
+                    <th>OUTRAS REFEIÇÕES</th>
+                    <th>TOTAL OUTRAS REFEIÇÕES</th>
+                    <th>TOTAL DE REFEIÇÕES SERVIDAS PARA JOVENS</th>
+                    <th>TOTAL DE REFEIÇÕES SERVIDAS PARA FUNCIONÁRIOS</th>
+                    <th>TOTAL DE REFEIÇÕES SERVIDAS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- As linhas de dados serão inseridas aqui pelo JavaScript -->
+            </tbody>
+        </table>
+       
+    </main>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <script src="./RESUMO_REFEIÇÃO_SERVIDAS/script.js"></script>
+</body>
+</html>

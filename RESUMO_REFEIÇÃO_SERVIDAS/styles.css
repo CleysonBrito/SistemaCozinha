@@ -1,0 +1,72 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: blue;
+    color: white;
+    padding: 10px;
+}
+
+.logo-esquerda img, .logo-direita img {
+    height: 50px;
+}
+
+.titulo {
+    font-size: 24px;
+}
+
+main {
+    padding: 20px;
+}
+
+.filtro-data {
+    margin-bottom: 20px;
+}
+
+.filtro-data label {
+    margin-right: 10px;
+}
+
+.filtro-data input {
+    margin-right: 10px;
+}
+
+#totalRefeicoesServidas {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+button:hover {
+    background-color: darkblue;
+}

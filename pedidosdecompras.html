@@ -4,64 +4,263 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./IMAGENS/Logo Icone.ico" type="image/x-icon">
-    <title>Pedido de Compras</title>
+    <title>Sistema de Pedidos</title>
     <link rel="stylesheet" href="./PEDIDOS DE COMPRAS/styles.css">
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
+
+
 </head>
+
+
+
 <body>
     <header>
-        <img src="./IMAGENS/Reciclar_Logo_Principal_Vertical_Negativo.png" alt="Logo Esquerdo" id="logoEsquerdo">
-        <h1>PEDIDO DE COMPRAS</h1>
-        <button id="homeButton">
-            <img src="./IMAGENS/Layout.png" alt="Logo Direito">
-        </button>
+        <img src="./IMAGENS/Reciclar_Logo_Principal_Vertical_Negativo.png" alt="Logo Esquerdo" class="logo-left">
+        <div class="title">Pedidos</div>
+        <img src="./IMAGENS/Layout.png" alt="Logo Direito" class="logo-right" onclick="window.location.href='home.html'">
     </header>
+
+
+
     <main>
+        <section class="fornecedor-section">
+            <form id="pedidoForm">
+                <fieldset class="fornecedor-info">
+
+
+
+                    <label for="dataHoje">Data de Hoje:</label>
+                    <input type="date" id="dataHoje">
+
+                    <legend class="infoPedido">INFORMAÇÕES DO PEDIDO</legend>
+                    <label for="numeroPedido">Número do Pedido:</label>
+                    <input type="text" id="numeroPedido" readonly>
+                    <br>
+                    <br>
+                    <legend>PERÍODO QUE IRÁ SUPRIR</legend>
+                    
+                    <div class="inline-elements">
+                    <label for="dataPedido">De:</label>
+                    <input type="date" id="dataPedido">
+                    <br>
+                    <br>
+                    
+                    <label for="dataAté">Até:</label>
+                    <input type="date" id="dataAté">
+                </div>
+
+            </fieldset>
+        </form>
+    </section>
+
+
+    <section class="fornecedor-section">
         <form id="pedidoForm">
-            <label for="numeroPedido">NUMERO DO PEDIDO:</label>
-            <input type="text" id="numeroPedido" name="numeroPedido">
-            <label for="data">Data:</label>
-            <input type="date" id="data" name="data">
-            <label for="fornecedor">Fornecedor:</label>
-            <input type="text" id="fornecedor" name="fornecedor">
-            <div class="item-entry">
-                <label for="sku">SKU:</label>
-                <input type="text" id="sku" name="sku">
-                <label for="descricao">DESCRIÇÃO:</label>
-                <input type="text" id="descricao" name="descricao">
-                <label for="quantidade">QUANTIDADE:</label>
-                <input type="number" id="quantidade" name="quantidade">
-                <label for="tipo">TIPO:</label>
-                <input type="text" id="tipo" name="tipo">
-                <label for="valorUnit">VALOR UNIT:</label>
-                <input type="number" id="valorUnit" name="valorUnit" step="0.01">
-                <button type="button" onclick="adicionarItem()">Adicionar Item</button>
+            <fieldset class="fornecedor-info">
+                <legend class="infoPedido">INFORMAÇÕES DO FORNECEDOR</legend>
+                    <button type="button" id="abrirFornecedoresBtn">Selecione o  Fornecedor</button>
+                    <label for="razaoSocial">Razão Social:</label>
+                    <input type="text" id="razaoSocial" readonly>         
+                    <label for="cnpjFornecedor">CNPJ do Fornecedor:</label>
+                    <input type="text" id="cnpjFornecedor" readonly>
+                    <label for="grupoFornecedor">Grupo:</label>
+                    <input type="text" id="grupoFornecedor" readonly>
+                    <label for="contatoFornecedor">Contato:</label>
+                    <input type="text" id="contatoFornecedor" readonly>
+                    <label for="emailFornecedor">E-mail:</label>
+                    <input type="email" id="emailFornecedor" readonly>
+                    <label for="telefoneFornecedor">Telefone:</label>
+                    <input type="tel" id="telefoneFornecedor" readonly>
+
+
+                </fieldset>
+            </form>
+        </section>
+             
+      
+        <section class="produtos-section">
+            <fieldset class="produtos-info">
+                <legend>Produtos</legend>
+                <div id="produtosContainer" class="produtos-container"></div>
+                <button type="button" id="adicionarProdutoBtn" onclick="adicionarProduto()">Adicione Produtos</button>
+            </fieldset>
+        </section>
+
+
+        <section class="finalizar-section">
+            <button type="button" id="salvarAlteracaoBtn" class="btn-salvarAlteracao">Salvar Alteração</button>
+            <br>
+            <button type="button" id="finalizarPedidoBtn" class="btn-finalizar">Finalizar Pedido</button>
+            
+        </section>
+        
+        <section class="pedidos-section">
+            <h2>Lista de Pedidos </h2>
+
+            <div id="filtrosContainer">
+
+                
+                <label for="dataInicial">Data Inicial:</label>
+                <input type="date" id="dataInicial">
+            
+                <label for="dataFinal">Data Final:</label>
+                <input type="date" id="dataFinal">
+            
+                <label for="filtroFornecedor">Fornecedor:</label>
+                <input type="text" id="filtroFornecedor" placeholder="Digite o nome do fornecedor">
+            
+                <label for="filtroStatus">Status:</label>
+                <select id="filtroStatus">
+                    <option value="">Todos</option>
+                    <option value="Pendente">Pendente</option>
+                    <option value="Aprovado">Aprovado</option>
+                    <option value="Cancelado">Cancelado</option>
+                </select>
+            
+                <label for="filtroPedido">Número do Pedido:</label>
+                <input type="text" id="filtroPedido" placeholder="Digite o número do pedido">
+            
+
+                
+                <button id="aplicarFiltrosBtn">Aplicar Filtros</button>
+                <button id="limparFiltrosBtn">Limpar Filtros</button>
             </div>
-            <table>
+
+
+            <table id="pedidosTable">
                 <thead>
                     <tr>
+                        <th>Data do Pedido</th>
+                        <th>Número do Pedido</th>
                         <th>Data</th>
-                        <th>Pedido</th>
-                        <th>SKU</th>
-                        <th>Descrição</th>
-                        <th>Quantidade</th>
-                        <th>Tipo</th>
-                        <th>Valor Unit</th>
-                        <th>Total</th>
+                        <th>Até</th>
+                        <th>Fornecedor</th>
+                        <th>Status</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
-                <tbody id="pedidoTableBody">
-                    <!-- Linhas da tabela serão adicionadas aqui -->
-                </tbody>
+                <tbody></tbody>
             </table>
-            <div class="buttons">
-                <button type="button" onclick="exportarExcel()">EXPORTAR EM EXCEL</button>
-                <button type="button" onclick="exportarPDF()">EXPORTAR EM PDF</button>
-                <button type="button" onclick="salvar()">Salvar</button>
-                <button type="button" onclick="limpar()">Limpar</button>
-            </div>
-        </form>
+        </section>
     </main>
+
+
+
+    <div id="fornecedoresModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModalFornecedores()">&times;</span>
+            <h2>Fornecedores</h2>
+            <table id="fornecedoresTable">
+                <thead>
+                    <tr>
+                        <th>Razão Social</th>
+                        <th>CNPJ</th>
+                       
+                        <th>Grupo</th>
+
+                        <th>Contato</th>
+                        <th>E-mail</th>
+                        <th>Telefone</th>
+
+                        <th>Selecionar</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+    <div id="produtosModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModalProdutos()">&times;</span>
+            <h2>Produtos</h2>
+            <input type="text" id="filterSku" placeholder="Filtrar por SKU">
+            <input type="text" id="filterDescricao" placeholder="Filtrar por Descrição">
+            <button onclick="aplicarFiltros()">Aplicar Filtros</button>
+            <button onclick="limparFiltros()">Limpar Filtros</button>
+            <table id="produtosTable">
+                <thead>
+                    <tr>
+                        <th>SKU</th>
+                        <th>Descrição</th>
+                        <th>Tipo</th>
+                        <th>Unidade</th>
+                        <th>Selecionar</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    
+    
+    
+
+
+
+<!-- Modal de Exportação -->
+<div id="exportarModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="fecharModalExportar()">×</span>
+        <div class="modal-header">
+            <img src="./IMAGENS/Logo Icone.ico" alt="Logo" class="logo-left">
+            <div class="modal-header-info">
+                <div>Data do Pedido: <span id="modalDataHoje"></span></div>
+                <div>Número do Pedido: <span id="modalNumeroPedido"></span></div>
+                <br>
+                PERÍODO QUE IRÁ SUPRIR
+                <div>De: <span id="modalDataInicial"></span></div>
+                <div>Até: <span id="modalDataFinal"></span></div>
+            </div>
+        </div>
+        <div class="modal-body">
+            <h2 id="modalRazaoSocial"></h2>
+            <p id="modalCNPJ"></p>
+            <p id="modalContato"></p>
+            <p id="modalEmail"></p>
+            <p id="modalTelefone"></p>
+          
+           
+            <table id="modalProdutosTable">
+                <thead>
+                    <tr>
+                        
+                        <th>SKU</th>
+                        <th>Descrição</th>
+                        <th>Quantidade</th>
+                        <th>Valor Unitário</th>
+                        <th>Valor Total</th>
+                        <th>Tipo</th>
+                        <th>Unidade</th>
+                        <th>Observação</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        
+
+       
+        <div class="modal-footer">
+            
+            <button id="exportarExcelBtn" onclick="exportarParaExcel()">Exportar para Excel</button>
+
+
+
+        </div>
+    </div>
+</div>
+
+
+   
+
     <script src="./PEDIDOS DE COMPRAS/script.js"></script>
 </body>
 </html>
